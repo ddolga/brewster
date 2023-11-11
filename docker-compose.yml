@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    container_name: mongo-brewster
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_brewster_data:/data/db
+    environment:
+      MONGO_INIT_ROOT_USERNAME: root
+      MONGO_INIT_ROOT_PASSWORD: example
+
+networks:
+  default:
+    name: brewster
+      external:true
+
+volumes:
+  mongo_brewster_data:
+    name: mongo_brewster_data

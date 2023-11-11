@@ -1,0 +1,30 @@
+{
+  "name": "brewster-types",
+  "version": "1.0.0",
+  "description": "Common types",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib/**/*",
+    "config/**/*",
+    "*.md"
+  ],
+  "scripts": {
+    "build": "heft build --clean",
+    "build:watch": "heft build"
+  },
+  "author": "Denis Dolgachev",
+  "license": "ISC",
+  "devDependencies": {
+    "@rushstack/heft": "0.56.0",
+    "typescript": "^5.1",
+    "@types/node": "~20.5.0"
+  },
+  "dependencies": {
+    "@rushstack/heft-typescript-plugin": "~0.1.11",
+    "@rushstack/heft-lint-plugin": "~0.1.11",
+    "@rushstack/heft-api-extractor-plugin": "~0.1.10",
+    "@rushstack/heft-jest-plugin": "~0.7.11",
+    "zod": "~3.22.4"
+  }
+}
