@@ -451,7 +451,7 @@
     },
     {
       "packageName": "brewster-types",
-      "projectFolder": "libs/types"
+      "projectFolder": "libs/brewster-types"
     }
   ]
 }

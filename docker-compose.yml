@@ -10,8 +10,8 @@ services:
     volumes:
       - mongo_brewster_data:/data/db
     environment:
-      MONGO_INIT_ROOT_USERNAME: root
-      MONGO_INIT_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
 networks:
   default:
