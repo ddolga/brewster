@@ -4,44 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/lib/zod_schemas/equipment.zod.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/lib/zod_schemas/equipment.zod.d.ts.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/lib/zod_schemas/equipment.zod.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/lib/zod_schemas/equipment.zod.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/equipment.zod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.env.docker" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.rush/temp/operation/build/state.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.rush/temp/package-deps_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.rush/temp/shrinkwrap-deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/dto/create-equipment.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/dto/update-equipment.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/entities/equipment.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/equipment.controller.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/equipment.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/equipment.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/equipment.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/equipment/equipment.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/mongo/mongo.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/brewster.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/types/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/types/src/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/types/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/types/types.build.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application.">
+      <change afterPath="$PROJECT_DIR$/webui/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/assets/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/main.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/vite-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/tsconfig.node.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +77,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/ddolg/IdeaProjects/brewster/server",
+    "last_opened_file_path": "C:/Users/ddolg/IdeaProjects/brewster/webui",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -110,8 +88,8 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.typescriptcompiler",
-    "ts.external.directory.path": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib"
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Users\\ddolg\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\232.10227.8\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -245,8 +223,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.server" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -264,6 +242,7 @@
       <workItem from="1699763774674" duration="1171000" />
       <workItem from="1699764974974" duration="95000" />
       <workItem from="1699765079872" duration="3976000" />
+      <workItem from="1699769319253" duration="3913000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -273,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699744133497</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application.">
+      <option name="closed" value="true" />
+      <created>1699773784342</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699773784342</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,7 +283,8 @@
       <path value="$PROJECT_DIR$/server" />
     </ignored-roots>
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

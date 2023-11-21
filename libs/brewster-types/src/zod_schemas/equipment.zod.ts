@@ -7,3 +7,7 @@ export const equipmentSchema = z.object({
   note:z.string(),
   type: z.enum(["brewer", "grinder", "basket", "scale", "tamper"])
 });
+
+export const createEquipmentSchema = equipmentSchema.omit({ _id: true });
+
+export const updateEquipmentSchema = equipmentSchema.partial();

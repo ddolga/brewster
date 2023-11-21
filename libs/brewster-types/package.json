@@ -16,15 +16,16 @@
   "author": "Denis Dolgachev",
   "license": "ISC",
   "devDependencies": {
-    "@rushstack/heft": "0.56.0",
     "typescript": "^5.1",
     "@types/node": "~20.5.0"
   },
   "dependencies": {
-    "@rushstack/heft-typescript-plugin": "~0.1.11",
-    "@rushstack/heft-lint-plugin": "~0.1.11",
-    "@rushstack/heft-api-extractor-plugin": "~0.1.10",
-    "@rushstack/heft-jest-plugin": "~0.7.11",
-    "zod": "~3.22.4"
+    "@rushstack/heft": "0.63.2",
+    "@rushstack/heft-typescript-plugin": "~0.2.12",
+    "@rushstack/heft-lint-plugin": "~0.2.12",
+    "@rushstack/heft-api-extractor-plugin": "~0.2.12",
+    "@rushstack/heft-jest-plugin": "~0.10.4",
+    "zod": "~3.22.4",
+    "dayjs": "~1.11.10"
   }
 }

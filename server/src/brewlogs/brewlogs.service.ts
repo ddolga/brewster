@@ -1,9 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {CreateBrewlogDto} from './dto/create-brewlog.dto';
-import {UpdateBrewlogDto} from './dto/update-brewlog.dto';
 import {Db, ObjectId} from "mongodb";
 import {DATABASE_CONNECTION} from "../mongo/mongo.module";
 import {Collections} from "../types/enum";
+import {CreateBrewlogDto, UpdateBrewlogDto} from "./dto";
 
 @Injectable()
 export class BrewlogsService {
@@ -20,6 +19,7 @@ export class BrewlogsService {
     }
 
     findAll() {
+        // return createFixture(brewlogSchema.array().min(10));
         return this.collection.find({}).toArray();
     }
 

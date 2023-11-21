@@ -1,9 +1,8 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {CreateEquipmentDto} from './dto/create-equipment.dto';
-import {UpdateEquipmentDto} from './dto/update-equipment.dto';
 import {Db, ObjectId} from "mongodb";
 import {DATABASE_CONNECTION} from "../mongo/mongo.module";
 import {Collections} from "../types/enum";
+import {CreateEquipmentDto, UpdateEquipmentDto} from "./dto";
 
 @Injectable()
 export class EquipmentService {

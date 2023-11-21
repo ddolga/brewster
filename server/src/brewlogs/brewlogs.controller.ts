@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { BrewlogsService } from './brewlogs.service';
-import { CreateBrewlogDto } from './dto/create-brewlog.dto';
-import { UpdateBrewlogDto } from './dto/update-brewlog.dto';
 import {ApiTags} from "@nestjs/swagger";
+import {CreateBrewlogDto, UpdateBrewlogDto} from "./dto";
 
 @ApiTags('brewlogs')
 @Controller('brewlogs')
