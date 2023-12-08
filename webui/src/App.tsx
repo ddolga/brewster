@@ -14,9 +14,10 @@ function App() {
         >
             <Route path="/" element={<Navigate to="/brewlog"/>}/>
             <Route index path='/brewlog' element={<BrewlogSummary/>}/>
-            <Route path='/brewlog/new/:id' element={<BrewlogView viewMode={false} isNew={true}/>}/>
-            <Route path='/brewlog/start' element={<BrewlogViewWData viewMode={false} isNew={true}/>}/>
-            <Route path='/brewlog/view/:id' element={<BrewlogView viewMode={true} isNew={false}/>}/>
+            <Route path='/brewlog/start' element={<BrewlogViewWData viewMode='new'/>}/>
+            <Route path='/brewlog/new/:id' element={<BrewlogView viewMode='new'/>}/>
+            <Route path='/brewlog/view/:id' element={<BrewlogView viewMode='view'/>}/>
+            <Route path='/brewlog/edit/:id' element={<BrewlogView viewMode='edit'/>}/>
         </Route>
     </Routes>
 

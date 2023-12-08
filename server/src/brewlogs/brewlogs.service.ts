@@ -3,6 +3,8 @@ import {Db, ObjectId} from "mongodb";
 import {DATABASE_CONNECTION} from "../mongo/mongo.module";
 import {Collections} from "../types/enum";
 import {CreateBrewlogDto, UpdateBrewlogDto} from "./dto";
+import {brewlogSchema, updateBrewlogSchema} from "brewster-types";
+import {createFixture} from "zod-fixture";
 
 @Injectable()
 export class BrewlogsService {
@@ -19,16 +21,26 @@ export class BrewlogsService {
     }
 
     findAll() {
-        // return createFixture(brewlogSchema.array().min(10));
-        return this.collection.find({}).toArray();
+        return this.collection.find({}).sort({date:-1}).toArray();
+    }
+
+    sampleData(){
+        return createFixture(brewlogSchema.omit({_id: true}).array().min(10));
     }
 
     findOne(id: string) {
         return this.collection.findOne({_id: new ObjectId(id)})
     }
 
-    update(id: string, updateBrewlogDto: UpdateBrewlogDto) {
-        return this.collection.updateOne({_id: new ObjectId(id)}, {$set: updateBrewlogDto});
+    async update(updateBrewlogDto: UpdateBrewlogDto) {
+        const validate = updateBrewlogSchema.safeParse(updateBrewlogDto);
+        if (validate.success) {
+            const {_id, ...data} = validate.data;
+            const res = await this.collection.updateOne({_id: new ObjectId(_id)}, {$set: data});
+            return res;
+        }
+
+        throw new Error('Failed to validate data')
     }
 
     remove(id: string) {

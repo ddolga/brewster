@@ -1,34 +1,57 @@
-import React, {Fragment, useEffect, useState} from "react";
-import {Box, Button, Checkbox, Group, Radio, Select, Slider, Text, Textarea, TextInput} from "@mantine/core";
+import React, {ChangeEventHandler, useEffect, useReducer, useState} from "react";
+import {Button, Container, createStyles, Flex, Group, Radio, rem, Select, Textarea, TextInput} from "@mantine/core";
 import {DateTimePicker} from "@mantine/dates";
-import {BrewlogCreateDto, BrewlogSummaryDto, BrewlogUpdateDto} from "../services/dto/brewlog.dto.ts";
+import {BrewlogUpdateDto} from "../services/dto/brewlog.dto.ts";
 import dayjs from "dayjs";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {
     useCreateNewEntryMutation,
     useGetBrewlogEntryQuery,
     useUpdateEntryMutation
 } from "../services/api/brewlogApi.ts";
-import {useForm} from "@mantine/form";
-import {createBrewlogSchema, updateBrewlogSchema} from "brewster-types";
+import {BasketTypeType, brewlogSchema, createBrewlogSchema, updateBrewlogSchema} from "brewster-types";
+import {get, set} from "lodash";
+import {produce} from "immer";
+import {Brewlog, InputPropsType} from "./types.ts";
+import {ValueSlider} from "../components/ValueSlider.tsx";
+import {CheckboxField} from "../components/CheckboxField.tsx";
+
+const useStyles = createStyles((theme) => ({
+    field: {
+        padding: theme.spacing.md,
+        textAlign: 'left',
+        maxWidth: rem(600)
+    },
+    label: {
+        width: rem(150),
+        textAlign: 'left'
+    },
+    withLabel: {
+        display: 'flex',
+    },
+}))
 
 interface BrewlogViewProps {
-    viewMode: boolean,
-    isNew: boolean
+    viewMode: 'new' | 'view' | 'edit',
 }
+
+type OnChangeType<T> = (v: T) => void;
+
 
 interface BrewlogViewWDataProps extends BrewlogViewProps {
     data?: BrewlogUpdateDto
 }
 
-const initialValue: BrewlogSummaryDto = {
+
+const initialValue: Brewlog = {
     _id: '',
-    date: '',
+    date: dayjs().toDate(),
     grinderSetting: 0,
     grindSize: 0,
     doze_in: 0,
     doze_out: 0,
-    coffee: "",
+    doze_used: 0,
+    coffee: "Some Coffee",
     decaff: false,
     brew_time: 0,
     preinfusion: false,
@@ -42,7 +65,23 @@ const initialValue: BrewlogSummaryDto = {
     acidity: 0,
     flavors: [],
     finish: [],
-    comment: ""
+    comment: "",
+}
+
+type ActionType = {
+    type: keyof Brewlog | 'reset',
+    value: any
+}
+
+function reducer(state: Brewlog, action: ActionType) {
+    return produce(state, draft => {
+        switch (action.type) {
+            case 'reset':
+                return action.value;
+            default:
+                set(draft, action.type, action.value);
+        }
+    })
 }
 
 export function BrewlogView(props: BrewlogViewProps) {
@@ -51,81 +90,114 @@ export function BrewlogView(props: BrewlogViewProps) {
     const data = useGetBrewlogEntryQuery({id: id!}).data;
 
     const parsed = data ? updateBrewlogSchema.parse(data) : null
-
     return parsed && <BrewlogViewWData data={parsed} {...props}/>
 }
 
+
 export function BrewlogViewWData(props: BrewlogViewWDataProps) {
 
-    const {viewMode, isNew, data} = props;
+    const {viewMode, data} = props;
 
-    const [readOnly, setReadOnly] = useState<boolean>(viewMode);
-
+    const [state, dispatch] = useReducer(reducer, initialValue);
+    const navigate = useNavigate();
+    const [readOnly, setReadOnly] = useState<boolean>(true);
     const [updateAction] = useUpdateEntryMutation();
     const [createNewAction] = useCreateNewEntryMutation();
 
-    const form = useForm({
-        initialValues: data || initialValue,
-    })
+    useEffect(() => {
+        dispatch({type: 'reset', value: data})
+    }, [data]);
 
     useEffect(() => {
-        if (data) {
-            form.setValues(data);
+        if (viewMode === 'new' || viewMode === 'edit') {
+            setReadOnly(false);
+        } else {
+            setReadOnly(true);
         }
-    }, [data])
+    }, [viewMode]);
 
     function handleEditClick() {
-        setReadOnly(!readOnly);
+        navigate(`/brewlog/edit/${state._id}`)
     }
 
-    const handleFormSubmit = form.onSubmit((values) => {
-        if (isNew) {
-            const {_id, ...rest} = values;
-            const entry: BrewlogCreateDto = createBrewlogSchema.parse(rest);
-            createNewAction(entry);
+    const handleFormSubmit = () => {
+        if (viewMode === 'new') {
+            const {_id, ...rest} = state;
+            const entry = createBrewlogSchema.safeParse(rest);
+            console.log(entry);
+            // createNewAction(entry);
         } else {
-            const entry: BrewlogUpdateDto = updateBrewlogSchema.parse(values);
-            updateAction(entry);
+            const res = updateBrewlogSchema.safeParse(state);
+            if (res.success) {
+                updateAction(res.data);
+            }
         }
-    })
-
-    function ValueSlider(props: { readOnly: boolean, path: string, label: string }) {
-        return <Fragment>
-            <Text>{props.label}</Text>
-            <Slider labelAlwaysOn defaultValue={50}
-                    disabled={props.readOnly}   {...form.getInputProps(props.path)}   />
-        </Fragment>
     }
 
-    return <Box>
-        {!isNew && <Button onClick={handleEditClick}>Edit</Button>}
+
+    function getInputProps<T, E = (v: T) => void>(path: keyof Brewlog): InputPropsType<T, E> {
+
+        return {
+            onChange: ((event: any) => {
+                if (event instanceof Object && 'target' in event) {
+                    dispatch({type: path, value: event.target.value})
+                } else {
+                    dispatch({type: path, value: event})
+                }
+            }) as E,
+            value: get(state, path) as T,
+            shape: get(brewlogSchema.shape, path),
+            readOnly: readOnly
+        }
+    }
+
+    const {classes} = useStyles();
+    const canEdit = viewMode === 'edit' || viewMode === 'new';
+
+    return <Container>
         <form onSubmit={handleFormSubmit}>
-            <DateTimePicker label={'Date'} defaultValue={dayjs().toDate()}
-                            readOnly={readOnly} {...form.getInputProps('date')}/>
-            <ValueSlider readOnly={readOnly} path={'grinderSetting'} label={'Grinder Setting'}/>
-            <ValueSlider readOnly={readOnly} path={'grindSize'} label={'Grind Size'}/>
-            <ValueSlider readOnly={readOnly} path={'doze_in'} label={'Doze Out'}/>
-            <ValueSlider readOnly={readOnly} path={'doze_out'} label={'Doze In'}/>
-            <TextInput label={'Coffee'} readOnly={readOnly}  {...form.getInputProps('coffee')} />
-            <Checkbox label='Decaff' disabled={readOnly}  {...form.getInputProps('decaff')}  />
-            <ValueSlider readOnly={readOnly} path={'brew_time'} label={'Brew Time'}/>
-            <Checkbox label='Preinfuse' disabled={readOnly} {...form.getInputProps('preinfusion')}   />
-            <ValueSlider readOnly={readOnly} path={'coffee_out'} label={'Coffee Out'}/>
-            <Text>Basket Size</Text>
-            <Group>
-                <Radio disabled={readOnly} label={'Single'}/>
-                <Radio disabled={readOnly} label={'Double'}/>
-            </Group>
-            <Checkbox label='Discarded' disabled={readOnly} {...form.getInputProps('discarded')} />
-            <Select label='Drink Type' placeholder='Pick drink'
-                    data={['Espresso', 'Latte', 'Cappuccino']}
-                    readOnly={readOnly}
-                    {...form.getInputProps('drinkType')}
+            <Flex>
+                {viewMode !== 'new' && <Button disabled={readOnly} onClick={handleEditClick}>Edit</Button>}
+                {canEdit && <Button type='submit'>Submit</Button>}
+            </Flex>
+            <TextInput className={classes.field} label={'Coffee'}
+                       {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('coffee')} />
+            <DateTimePicker className={classes.field} label={'Date'} {...getInputProps<Date>('date')}
             />
-            <ValueSlider readOnly={readOnly} path={'sweetness'} label={'Sweetness Out'}/>
-            <ValueSlider readOnly={readOnly} path={'body'} label={'Body'}/>
-            <ValueSlider readOnly={readOnly} path={'acidity'} label={'Acidity'}/>
-            <Textarea label='Comment' {...form.getInputProps('comment')} readOnly={readOnly}/>
+            <ValueSlider  {...getInputProps<number>('grinderSetting')} label={'Grinder Setting'}/>
+            <ValueSlider  {...getInputProps<number>('grindSize')} label={'Grind Size'}/>
+            <ValueSlider  {...getInputProps<number>('doze_in')} label={'Doze Out'}/>
+            <ValueSlider  {...getInputProps<number>('doze_out')} label={'Doze In'}/>
+            <ValueSlider  {...getInputProps<number>('doze_used')} label={'Doze In'}/>
+            <CheckboxField label='Decaff' {...getInputProps<boolean>('decaff')} readOnly={readOnly}/>
+            <ValueSlider {...getInputProps<number>('brew_time')} label={'Brew Time'}/>
+            <CheckboxField label='Preinfuse' {...getInputProps<boolean>('preinfusion')} readOnly={readOnly}/>
+            <ValueSlider {...getInputProps<number>('coffee_out')} label={'Coffee Out'}/>
+            <Radio.Group
+                className={classes.field}
+                name='basketType'
+                label='Basket Type'
+                {...getInputProps<BasketTypeType>('basketType')}
+            >
+                <Group>
+                    <Radio value='single' disabled={readOnly} label={'Single'}/>
+                    <Radio value='double' disabled={readOnly} label={'Double'}/>
+                </Group>
+            </Radio.Group>
+            <ValueSlider {...getInputProps<number>('basketSize')} label={'Basket Size'}/>
+            <CheckboxField label='Discarded' {...getInputProps<boolean>('discarded')} readOnly={readOnly}/>
+            <Select className={classes.field}
+                    label='Drink Type'
+                    placeholder='Pick drink'
+                    data={['Espresso', 'Latte', 'Cappuccino']}
+                    {...getInputProps<string>('drinkType')}
+            />
+            <ValueSlider {...getInputProps<number>('sweetness')} label={'Sweetness Out'}/>
+            <ValueSlider {...getInputProps<number>('body')} label={'Body'}/>
+            <ValueSlider {...getInputProps<number>('acidity')} label={'Acidity'}/>
+            <Textarea className={classes.field} label='Comment'
+                      {...getInputProps<string, ChangeEventHandler<HTMLTextAreaElement>>('comment')}
+            />
         </form>
-    </Box>
+    </Container>
 }

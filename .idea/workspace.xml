@@ -5,21 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application.">
-      <change afterPath="$PROJECT_DIR$/webui/.eslintrc.cjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/public/vite.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/assets/react.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/vite-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/tsconfig.node.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/vite.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/brewlog/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/components/CheckboxField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/brewlog.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/brewlog.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/test/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/test/jest-e2e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +35,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -51,11 +57,23 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;contexts&quot;: [
+    {
+      &quot;name&quot;: &quot;docker-desktop&quot;
+    }
+  ],
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="docker-desktop" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/server/package.json" />
+    <dismissed value="$PROJECT_DIR$/webui/package.json" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -69,29 +87,31 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/ddolg/IdeaProjects/brewster/webui",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "C:\\Users\\ddolg\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\232.10227.8\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ddolg/IdeaProjects/brewster/webui&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/denisdogachev/IdeaProjects/brewster/webui/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ddolg\IdeaProjects\brewster\server" />
@@ -120,17 +140,6 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -178,6 +187,17 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -187,19 +207,6 @@
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.mongo: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="mongo" />
-            </list>
-          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -215,15 +222,25 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="webui" type="js.build_tools.npm" temporary="true">
+      <package-json value="$PROJECT_DIR$/webui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="npm.webui" />
       <item itemvalue="npm.server" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.server" />
-        <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
+        <item itemvalue="npm.webui" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -243,6 +260,17 @@
       <workItem from="1699764974974" duration="95000" />
       <workItem from="1699765079872" duration="3976000" />
       <workItem from="1699769319253" duration="3913000" />
+      <workItem from="1700668409783" duration="123000" />
+      <workItem from="1700668538107" duration="784000" />
+      <workItem from="1700679874678" duration="598000" />
+      <workItem from="1700843242305" duration="40000" />
+      <workItem from="1700843288915" duration="18118000" />
+      <workItem from="1701107273428" duration="31326000" />
+      <workItem from="1701290574974" duration="3034000" />
+      <workItem from="1701447198869" duration="326000" />
+      <workItem from="1701747444198" duration="1020000" />
+      <workItem from="1702001350409" duration="5934000" />
+      <workItem from="1702054322317" duration="9152000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

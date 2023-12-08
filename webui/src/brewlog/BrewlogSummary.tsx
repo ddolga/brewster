@@ -40,7 +40,7 @@ export function BrewlogSummary() {
 
 
     function handleNew() {
-        const last = data.length > 0 ? data[data.length - 1]._id : null;
+        const last = data.length > 0 ? data[0]._id : null;
         navigate(last ? `/brewlog/new/${last}` : '/brewlog/start');
     }
 
