@@ -29,6 +29,11 @@ export class BrewlogsController {
         return this.brewlogsService.findOne(id);
     }
 
+    @Get('new/:id')
+    getNewTemplate(@Param('id') id: string) {
+        return this.brewlogsService.getNewTemplate(id);
+    }
+
     @Patch()
     update(@Param('id') id: string, @Body() updateBrewlogDto: UpdateBrewlogDto) {
         return this.brewlogsService.update(updateBrewlogDto);

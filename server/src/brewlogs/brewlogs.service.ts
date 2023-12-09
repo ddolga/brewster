@@ -5,6 +5,7 @@ import {Collections} from "../types/enum";
 import {CreateBrewlogDto, UpdateBrewlogDto} from "./dto";
 import {brewlogSchema, updateBrewlogSchema} from "brewster-types";
 import {createFixture} from "zod-fixture";
+import {Brewlog} from "./entities/brewlog.entity";
 
 @Injectable()
 export class BrewlogsService {
@@ -21,15 +22,21 @@ export class BrewlogsService {
     }
 
     findAll() {
-        return this.collection.find({}).sort({date:-1}).toArray();
+        return this.collection.find({}).sort({date: -1}).toArray();
     }
 
-    sampleData(){
+    sampleData() {
         return createFixture(brewlogSchema.omit({_id: true}).array().min(10));
     }
 
     findOne(id: string) {
-        return this.collection.findOne({_id: new ObjectId(id)})
+        return this.collection.findOne<Brewlog>({_id: new ObjectId(id)});
+    }
+
+    async getNewTemplate(id: string) {
+        const res = await this.collection.findOne<Brewlog>({_id: new ObjectId(id)});
+        const {_id, date, ...rest} = res;
+        return {...rest, date: new Date()}
     }
 
     async update(updateBrewlogDto: UpdateBrewlogDto) {

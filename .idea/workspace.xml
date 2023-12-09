@@ -4,25 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application.">
-      <change afterPath="$PROJECT_DIR$/webui/src/brewlog/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/components/CheckboxField.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" afterDir="false" />
+    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="added doze_used field to schemahl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/brewlog.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/brewlog.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rush.json" beforeDir="false" afterPath="$PROJECT_DIR$/rush.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/test/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/test/jest-e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/entities/brewlog.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/entities/brewlog.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tsconfig.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/tsconfig.build.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" afterDir="false" />
     </list>
@@ -120,7 +115,7 @@
       <recent name="C:\Users\ddolg\IdeaProjects\brewster" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.server">
+  <component name="RunManager" selected="npm.webui">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -239,8 +234,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.server" />
         <item itemvalue="npm.webui" />
+        <item itemvalue="npm.server" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -270,7 +265,8 @@
       <workItem from="1701447198869" duration="326000" />
       <workItem from="1701747444198" duration="1020000" />
       <workItem from="1702001350409" duration="5934000" />
-      <workItem from="1702054322317" duration="9152000" />
+      <workItem from="1702054322317" duration="21950000" />
+      <workItem from="1702093416385" duration="2232000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -288,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699773784342</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added doze_used field to schema">
+      <option name="closed" value="true" />
+      <created>1702070393659</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702070393659</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +316,8 @@
     </ignored-roots>
     <MESSAGE value="initial commit" />
     <MESSAGE value="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application." />
+    <MESSAGE value="added doze_used field to schema" />
+    <option name="LAST_COMMIT_MESSAGE" value="added doze_used field to schema" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

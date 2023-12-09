@@ -1,12 +1,13 @@
 import React, {ChangeEventHandler, useEffect, useReducer, useState} from "react";
 import {Button, Container, createStyles, Flex, Group, Radio, rem, Select, Textarea, TextInput} from "@mantine/core";
-import {DateTimePicker} from "@mantine/dates";
-import {BrewlogUpdateDto} from "../services/dto/brewlog.dto.ts";
+import {DateTimePicker, DateTimePickerProps} from "@mantine/dates";
+import {BrewlogSummaryDto, CreateBrewlogDto} from "../services/dto/brewlog.dto.ts";
 import dayjs from "dayjs";
 import {useNavigate, useParams} from "react-router-dom";
 import {
     useCreateNewEntryMutation,
     useGetBrewlogEntryQuery,
+    useGetBrewlogNewTemplateQuery,
     useUpdateEntryMutation
 } from "../services/api/brewlogApi.ts";
 import {BasketTypeType, brewlogSchema, createBrewlogSchema, updateBrewlogSchema} from "brewster-types";
@@ -29,17 +30,22 @@ const useStyles = createStyles((theme) => ({
     withLabel: {
         display: 'flex',
     },
+    padded: {
+        margin: rem(2)
+    }
 }))
 
 interface BrewlogViewProps {
-    viewMode: 'new' | 'view' | 'edit',
 }
 
 type OnChangeType<T> = (v: T) => void;
 
+export enum ViewMode {
+    new, view, edit
+}
 
 interface BrewlogViewWDataProps extends BrewlogViewProps {
-    data?: BrewlogUpdateDto
+    data: BrewlogSummaryDto | CreateBrewlogDto
 }
 
 
@@ -84,19 +90,35 @@ function reducer(state: Brewlog, action: ActionType) {
     })
 }
 
-export function BrewlogView(props: BrewlogViewProps) {
-
-    const {id} = useParams();
-    const data = useGetBrewlogEntryQuery({id: id!}).data;
-
-    const parsed = data ? updateBrewlogSchema.parse(data) : null
-    return parsed && <BrewlogViewWData data={parsed} {...props}/>
+function convertViewModeToEnum(mode: string): ViewMode {
+    type ViewModeString = keyof typeof ViewMode;
+    const viewModeAsString: ViewModeString = mode as ViewModeString;
+    return ViewMode[viewModeAsString];
 }
 
 
+export function BrewlogView(props: BrewlogViewProps) {
+
+    const {id} = useParams();
+
+    const data: BrewlogSummaryDto | undefined = useGetBrewlogEntryQuery({id: id!}).data;
+    return data && <BrewlogViewWData data={data} {...props}/>
+}
+
+export function BrewlogNew(props: BrewlogViewProps) {
+
+    const {id} = useParams();
+
+    const data: CreateBrewlogDto | undefined = useGetBrewlogNewTemplateQuery({id: id!}).data;
+    return data && <BrewlogViewWData data={data} {...props}/>
+}
+
 export function BrewlogViewWData(props: BrewlogViewWDataProps) {
 
-    const {viewMode, data} = props;
+    const {data} = props;
+
+    const {mode} = useParams();
+    const viewMode: ViewMode = convertViewModeToEnum(mode || 'view');
 
     const [state, dispatch] = useReducer(reducer, initialValue);
     const navigate = useNavigate();
@@ -109,29 +131,33 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
     }, [data]);
 
     useEffect(() => {
-        if (viewMode === 'new' || viewMode === 'edit') {
-            setReadOnly(false);
-        } else {
-            setReadOnly(true);
-        }
+        setReadOnly(!(viewMode === ViewMode.new || viewMode === ViewMode.edit))
     }, [viewMode]);
 
     function handleEditClick() {
         navigate(`/brewlog/edit/${state._id}`)
     }
 
-    const handleFormSubmit = () => {
-        if (viewMode === 'new') {
-            const {_id, ...rest} = state;
-            const entry = createBrewlogSchema.safeParse(rest);
-            console.log(entry);
-            // createNewAction(entry);
-        } else {
-            const res = updateBrewlogSchema.safeParse(state);
-            if (res.success) {
-                updateAction(res.data);
+    function handleGoBack() {
+        navigate('/brewlog')
+    }
+
+    const handleFormSubmit = (save: boolean) => {
+        if (save) {
+            if (viewMode === ViewMode.new) {
+                const {_id, ...rest} = state;
+                const resCreate = createBrewlogSchema.safeParse(rest);
+                if (resCreate.success) {
+                    createNewAction(resCreate.data);
+                }
+            } else {
+                const resSave = updateBrewlogSchema.safeParse(state);
+                if (resSave.success) {
+                    updateAction(resSave.data);
+                }
             }
         }
+        navigate(`/brewlog/view/${state._id}`)
     }
 
 
@@ -151,18 +177,31 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
         }
     }
 
+    function DateTimePickerString(props: Omit<DateTimePickerProps, "value" | "onChange"> & { value: string } & {
+        onChange: (val: string) => void
+    }) {
+
+        const {value, onChange, ...rest} = props;
+
+        return <DateTimePicker value={new Date(value)} onChange={(date) => onChange(date!.toISOString())}   {...rest}/>
+    }
+
     const {classes} = useStyles();
-    const canEdit = viewMode === 'edit' || viewMode === 'new';
+    const canEdit = viewMode === ViewMode.edit || viewMode === ViewMode.new;
 
     return <Container>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={() => handleFormSubmit(true)}>
             <Flex>
-                {viewMode !== 'new' && <Button disabled={readOnly} onClick={handleEditClick}>Edit</Button>}
-                {canEdit && <Button type='submit'>Submit</Button>}
+                <Button className={classes.padded} onClick={handleGoBack}>Back</Button>
+                {viewMode !== ViewMode.new && readOnly &&
+                    <Button className={classes.padded} onClick={handleEditClick}>Edit</Button>}
+                {canEdit && <Button className={classes.padded} color={'green'} type='submit'>Save</Button>}
+                {canEdit && <Button className={classes.padded} color={'red'}
+                                    onClick={() => handleFormSubmit(false)}>Cancel</Button>}
             </Flex>
             <TextInput className={classes.field} label={'Coffee'}
                        {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('coffee')} />
-            <DateTimePicker className={classes.field} label={'Date'} {...getInputProps<Date>('date')}
+            <DateTimePickerString className={classes.field} label={'Date'} {...getInputProps<string>('date')}
             />
             <ValueSlider  {...getInputProps<number>('grinderSetting')} label={'Grinder Setting'}/>
             <ValueSlider  {...getInputProps<number>('grindSize')} label={'Grind Size'}/>

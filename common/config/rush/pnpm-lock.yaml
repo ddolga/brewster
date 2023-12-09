@@ -62,6 +62,9 @@ importers:
       brewster-types:
         specifier: workspace:~1.0.0
         version: link:../libs/brewster-types
+      dayjs:
+        specifier: ~1.11.10
+        version: 1.11.10
       mongodb:
         specifier: ~6.2.0
         version: 6.2.0

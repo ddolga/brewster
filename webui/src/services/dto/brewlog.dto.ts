@@ -6,6 +6,6 @@ export const brewlogSummarySchema = brewlogSchema
 
 export type BrewlogSummaryDto = z.infer<typeof brewlogSummarySchema>
 
-export type BrewlogCreateDto = z.infer<typeof createBrewlogSchema>
+export type CreateBrewlogDto = z.infer<typeof createBrewlogSchema>
 
-export type BrewlogUpdateDto = z.infer<typeof updateBrewlogSchema>
+export type UpdateBrewlogDto = z.infer<typeof updateBrewlogSchema>

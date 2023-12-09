@@ -2,7 +2,7 @@ import './App.css'
 import {BrewlogSummary} from "./brewlog/BrewlogSummary.tsx";
 import {AppShell} from "@mantine/core";
 import {Navigate, Outlet, Route, Routes} from "react-router-dom";
-import {BrewlogView, BrewlogViewWData} from "./brewlog/BrewlogView.tsx";
+import {BrewlogNew, BrewlogView} from "./brewlog/BrewlogView.tsx";
 
 function App() {
 
@@ -14,10 +14,8 @@ function App() {
         >
             <Route path="/" element={<Navigate to="/brewlog"/>}/>
             <Route index path='/brewlog' element={<BrewlogSummary/>}/>
-            <Route path='/brewlog/start' element={<BrewlogViewWData viewMode='new'/>}/>
-            <Route path='/brewlog/new/:id' element={<BrewlogView viewMode='new'/>}/>
-            <Route path='/brewlog/view/:id' element={<BrewlogView viewMode='view'/>}/>
-            <Route path='/brewlog/edit/:id' element={<BrewlogView viewMode='edit'/>}/>
+            <Route path='/brewlog/new/:id' element={<BrewlogNew />}/>
+            <Route path='/brewlog/:mode/:id' element={<BrewlogView />}/>
         </Route>
     </Routes>
 

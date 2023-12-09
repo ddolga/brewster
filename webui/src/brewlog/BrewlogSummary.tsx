@@ -41,7 +41,8 @@ export function BrewlogSummary() {
 
     function handleNew() {
         const last = data.length > 0 ? data[0]._id : null;
-        navigate(last ? `/brewlog/new/${last}` : '/brewlog/start');
+
+        navigate(last ? `/brewlog/new/${last}` : '/brewlog/new/start');
     }
 
     function handleView(id: string) {

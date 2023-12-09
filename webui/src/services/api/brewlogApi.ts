@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BrewlogCreateDto, brewlogSummarySchema, BrewlogUpdateDto} from "../dto/brewlog.dto.ts";
+import {BrewlogSummaryDto, brewlogSummarySchema, CreateBrewlogDto, UpdateBrewlogDto} from "../dto/brewlog.dto.ts";
+import {createBrewlogSchema} from "brewster-types";
 
 
 const brewlogApi = createApi({
@@ -17,15 +18,27 @@ const brewlogApi = createApi({
             }
         }),
         getBrewlogEntry: build.query({
-            query: (args: { id: string }) => ({
+            query: (args: {
+                id: string
+            }) => ({
                 url: `/${args.id}`
             }),
-            transformResponse: (response) => {
-                return brewlogSummarySchema.parse(response);
+            transformResponse: (response: BrewlogSummaryDto) => {
+                return brewlogSummarySchema.parse(response) as BrewlogSummaryDto;
+            }
+        }),
+        getBrewlogNewTemplate: build.query({
+            query: (args: {
+                id: string
+            }) => ({
+                url: `/new/${args.id}`
+            }),
+            transformResponse: (response: BrewlogSummaryDto) => {
+                return createBrewlogSchema.parse(response) as CreateBrewlogDto;
             }
         }),
         createNewEntry: build.mutation({
-            query(entry: BrewlogCreateDto) {
+            query(entry: CreateBrewlogDto) {
                 return {
                     url: '',
                     method: 'POST',
@@ -35,9 +48,9 @@ const brewlogApi = createApi({
             invalidatesTags: ['Brewlog']
         }),
         updateEntry: build.mutation({
-            query(entry: BrewlogUpdateDto) {
+            query(entry: UpdateBrewlogDto) {
                 return {
-                    url:'',
+                    url: '',
                     method: 'PATCH',
                     body: entry
                 }
@@ -59,6 +72,7 @@ const brewlogApi = createApi({
 export const {
     useGetBrewlogsQuery,
     useGetBrewlogEntryQuery,
+    useGetBrewlogNewTemplateQuery,
     useCreateNewEntryMutation,
     useUpdateEntryMutation,
     useDeleteEntryMutation,
