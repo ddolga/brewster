@@ -1,17 +1,18 @@
 import React, {ChangeEventHandler, useEffect, useReducer, useState} from "react";
 import {
     Accordion,
+    AccordionControlProps,
     Button,
     Container,
     createStyles,
-    Group, Paper,
+    Group,
     Radio,
     rem,
     Select,
+    Text,
     Textarea,
     TextInput
 } from "@mantine/core";
-import {DateTimePicker, DateTimePickerProps} from "@mantine/dates";
 import {BrewlogSummaryDto, CreateBrewlogDto} from "../services/dto/brewlog.dto.ts";
 import dayjs from "dayjs";
 import {useNavigate, useParams} from "react-router-dom";
@@ -27,6 +28,8 @@ import {produce} from "immer";
 import {Brewlog, InputPropsType} from "./types.ts";
 import {ValueSlider} from "../components/ValueSlider.tsx";
 import {CheckboxField} from "../components/CheckboxField.tsx";
+import {DateTimePickerString} from "../components/DateTimePickerString.tsx";
+import {StyledNumberInput} from "../components/StyledNumberInput.tsx";
 
 const useStyles = createStyles((theme) => ({
     field: {
@@ -41,10 +44,13 @@ const useStyles = createStyles((theme) => ({
     withLabel: {
         display: 'flex',
     },
-    highlite:{
-        backgroundColor:theme.colors.dark[4],
-        borderRadius:rem(10),
-        boxShadow:theme.shadows.md,
+    highlite: {
+        backgroundColor: theme.colors.dark[4],
+        borderRadius: rem(10),
+        boxShadow: theme.shadows.md,
+        padding: rem(5),
+        marginLeft: rem(15),
+        marginTop: rem(10),
     }
 }))
 
@@ -193,14 +199,11 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
         }
     }
 
-    function DateTimePickerString(props: Omit<DateTimePickerProps, "value" | "onChange"> & { value: string } & {
-        onChange: (val: string) => void
-    }) {
-
-        const {value, onChange, ...rest} = props;
-
-        return <DateTimePicker value={new Date(value)} onChange={(date) => onChange(date!.toISOString())}   {...rest}/>
+    function StyledAccordionControl(props: AccordionControlProps & { label: string }) {
+        const {label, ...rest} = props;
+        return <Accordion.Control{...rest}><Text fw={700} color={'#d4dc00'}>{label}</Text></Accordion.Control>
     }
+
 
     const {classes} = useStyles();
     const canEdit = viewMode === ViewMode.edit || viewMode === ViewMode.new;
@@ -215,12 +218,11 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
                 {canEdit && <Button color={'red'}
                                     onClick={() => handleFormSubmit(false)}>Cancel</Button>}
             </Group>
-            <DateTimePickerString className={classes.field} label={'Date'} {...getInputProps<string>('date')}
-            />
+            <DateTimePickerString className={classes.field} label={'Date'} {...getInputProps<string>('date')} />
             <CheckboxField label='Discarded' {...getInputProps<boolean>('discarded')} readOnly={readOnly}/>
             <Accordion>
                 <Accordion.Item value={'Doze'}>
-                    <Accordion.Control>Doze</Accordion.Control>
+                    <StyledAccordionControl label={'Doze'}/>
                     <Accordion.Panel>
                         <Select className={classes.field}
                                 label='Drink Type'
@@ -229,19 +231,18 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
                                 {...getInputProps<string>('drinkType')}
                         />
                         <ValueSlider  {...getInputProps<number>('grinderSetting')} label={'Grinder Setting'}/>
-                        {/*doze*/}
-
-                        <Paper className={classes.highlite}>
-                            <ValueSlider  {...getInputProps<number>('doze_in')} label={'Doze In'}/>
-                            <ValueSlider  {...getInputProps<number>('doze_out')} label={'Doze Out'}/>
-                            <ValueSlider  {...getInputProps<number>('doze_used')} label={'Doze Used'}/>
-                        </Paper>
+                        <Group className={classes.highlite}>
+                            <StyledNumberInput  {...getInputProps<number>('doze_in')} label={'Doze In'}/>
+                            <StyledNumberInput {...getInputProps<number>('doze_out')} label={'Doze Out'}/>
+                            <StyledNumberInput  {...getInputProps<number>('doze_used')} label={'Doze Used'}/>
+                        </Group>
                     </Accordion.Panel>
                 </Accordion.Item>
                 <Accordion.Item value={'Brew'}>
-                    <Accordion.Control>Brew</Accordion.Control>
+                    <StyledAccordionControl label={'Brew'}/>
                     <Accordion.Panel>
-                        <CheckboxField label='Preinfuse' {...getInputProps<boolean>('preinfusion')} readOnly={readOnly}/>
+                        <CheckboxField label='Preinfuse' {...getInputProps<boolean>('preinfusion')}
+                                       readOnly={readOnly}/>
                         <Radio.Group
                             className={classes.field}
                             name='basketType'
@@ -254,14 +255,14 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
                             </Group>
                         </Radio.Group>
                         <ValueSlider {...getInputProps<number>('basketSize')} label={'Basket Size'}/>
-                        <Paper className={classes.highlite}>
-                            <ValueSlider {...getInputProps<number>('coffee_out')} label={'Coffee Out'}/>
-                            <ValueSlider {...getInputProps<number>('brew_time')} label={'Brew Time'}/>
-                        </Paper>
+                        <Group className={classes.highlite}>
+                            <StyledNumberInput {...getInputProps<number>('coffee_out')} label={'Coffee Out'}/>
+                            <StyledNumberInput {...getInputProps<number>('brew_time')} label={'Brew Time'}/>
+                        </Group>
                     </Accordion.Panel>
                 </Accordion.Item>
                 <Accordion.Item value={'Coffee'}>
-                    <Accordion.Control>Coffee</Accordion.Control>
+                    <StyledAccordionControl label={'Coffee'}/>
                     {/*coffee*/}
                     <Accordion.Panel>
                         <TextInput className={classes.field} label={'Coffee'}
@@ -274,7 +275,7 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
                     </Accordion.Panel>
                 </Accordion.Item>
                 <Accordion.Item value={'Rating'}>
-                    <Accordion.Control>Rating</Accordion.Control>
+                    <StyledAccordionControl label={'Rating'} />
                     <Accordion.Panel>
                         <ValueSlider {...getInputProps<number>('sweetness')} label={'Sweetness Out'}/>
                         <ValueSlider {...getInputProps<number>('body')} label={'Body'}/>

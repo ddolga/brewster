@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {createStyles, Flex, rem, Slider, TextInput} from "@mantine/core";
-import {InputPropsType, InputPropsTypeWithLabel} from "../brewlog/types.ts";
-import {ZodAny, ZodType, ZodTypeAny} from "zod";
+import {InputPropsTypeWithLabel} from "../brewlog/types.ts";
+import {ZodTypeAny} from "zod";
 
 const DEFAULT_SLIDER_MAX = 100;
 
