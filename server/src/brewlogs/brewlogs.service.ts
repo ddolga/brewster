@@ -6,7 +6,34 @@ import {CreateBrewlogDto, UpdateBrewlogDto} from "./dto";
 import {brewlogSchema, updateBrewlogSchema} from "brewster-types";
 import {createFixture} from "zod-fixture";
 import {Brewlog} from "./entities/brewlog.entity";
+import dayjs from "dayjs";
 
+const initialValue: Brewlog = {
+    _id: '',
+    date: dayjs().toDate(),
+    grinderSetting: 1,
+    grindSize: 400,
+    doze_in: 7,
+    doze_out: 7,
+    doze_used: 7,
+    coffee: "Some Coffee",
+    roaster: '',
+    origin:'',
+    comment: "",
+    decaff: false,
+    brew_time: 25,
+    preinfusion: false,
+    coffee_out: 6,
+    basketType: "single",
+    basketSize: 7,
+    discarded: false,
+    drinkType: "espresso",
+    sweetness: 1,
+    body: 1,
+    acidity: 1,
+    flavors: [],
+    finish: [],
+}
 @Injectable()
 export class BrewlogsService {
 
@@ -34,6 +61,10 @@ export class BrewlogsService {
     }
 
     async getNewTemplate(id: string) {
+        if(id === 'start'){
+           return initialValue;
+        }
+
         const res = await this.collection.findOne<Brewlog>({_id: new ObjectId(id)});
         const {_id, date, ...rest} = res;
         return {...rest, date: new Date()}

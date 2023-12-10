@@ -20,6 +20,8 @@ export const brewlogSchema = z.object({
     doze_out: rnd(z.number().min(6).max(26).positive().describe('amount of coffee in grams that came out of grinder')),
     doze_used: rnd(z.number().min(6).max(26).positive().describe('amount of coffee put in the portafilter')),
     coffee: z.string().describe('name of coffee'),
+    roaster: z.string().optional().describe('coffee roaster/distributor'),
+    origin: z.string().optional().describe('where coffee comes from'),
     decaff: z.boolean().describe('is decaf'),
     brew_time: rnd(z.number().positive().max(60).describe('pull time in seconds (not including preinfusion)')),
     preinfusion: z.boolean().describe('preinfusion used'),

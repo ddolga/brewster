@@ -4,22 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="added doze_used field to schemahl">
+    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="started building the input form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/common/config/rush/pnpm-lock.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.rush/temp/package-deps_build.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/.rush/temp/package-deps_build.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/entities/brewlog.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/entities/brewlog.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/tsconfig.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/tsconfig.build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +22,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -51,17 +42,6 @@
         <option name="url" value="https://github.com/ddolga/brewster.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="KubernetesApiProvider">{
-  &quot;contexts&quot;: [
-    {
-      &quot;name&quot;: &quot;docker-desktop&quot;
-    }
-  ],
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="KubernetesSettings">
-    <option name="contextName" value="docker-desktop" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -88,9 +68,9 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/ddolg/IdeaProjects/brewster/webui&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -98,13 +78,15 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.server.executor&quot;: &quot;Debug&quot;,
+    &quot;npm.webui.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/denisdogachev/IdeaProjects/brewster/webui/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -117,6 +99,7 @@
   </component>
   <component name="RunManager" selected="npm.webui">
     <configuration default="true" type="DjangoTestsConfigurationType">
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -136,7 +119,19 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -159,6 +154,7 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="Python.FlaskServer">
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -172,6 +168,7 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -182,17 +179,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -202,6 +188,19 @@
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.mongo: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mongo" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -229,13 +228,15 @@
     </configuration>
     <list>
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="npm.webui" />
+      <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
       <item itemvalue="npm.server" />
+      <item itemvalue="npm.webui" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.webui" />
         <item itemvalue="npm.server" />
+        <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -255,18 +256,14 @@
       <workItem from="1699764974974" duration="95000" />
       <workItem from="1699765079872" duration="3976000" />
       <workItem from="1699769319253" duration="3913000" />
-      <workItem from="1700668409783" duration="123000" />
-      <workItem from="1700668538107" duration="784000" />
-      <workItem from="1700679874678" duration="598000" />
-      <workItem from="1700843242305" duration="40000" />
-      <workItem from="1700843288915" duration="18118000" />
-      <workItem from="1701107273428" duration="31326000" />
-      <workItem from="1701290574974" duration="3034000" />
-      <workItem from="1701447198869" duration="326000" />
-      <workItem from="1701747444198" duration="1020000" />
-      <workItem from="1702001350409" duration="5934000" />
-      <workItem from="1702054322317" duration="21950000" />
-      <workItem from="1702093416385" duration="2232000" />
+      <workItem from="1700545233034" duration="210000" />
+      <workItem from="1700545457313" duration="11000" />
+      <workItem from="1702095774478" duration="41000" />
+      <workItem from="1702095826839" duration="254000" />
+      <workItem from="1702103567504" duration="439000" />
+      <workItem from="1702104023472" duration="5451000" />
+      <workItem from="1702154972082" duration="2000" />
+      <workItem from="1702154999949" duration="5213000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -284,13 +281,13 @@
       <option name="project" value="LOCAL" />
       <updated>1699773784342</updated>
     </task>
-    <task id="LOCAL-00003" summary="added doze_used field to schema">
+    <task id="LOCAL-00003" summary="started building the input form">
       <option name="closed" value="true" />
-      <created>1702070393659</created>
+      <created>1700545333346</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1702070393659</updated>
+      <updated>1700545333346</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -316,8 +313,8 @@
     </ignored-roots>
     <MESSAGE value="initial commit" />
     <MESSAGE value="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application." />
-    <MESSAGE value="added doze_used field to schema" />
-    <option name="LAST_COMMIT_MESSAGE" value="added doze_used field to schema" />
+    <MESSAGE value="started building the input form" />
+    <option name="LAST_COMMIT_MESSAGE" value="started building the input form" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
