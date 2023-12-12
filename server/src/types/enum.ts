@@ -1,4 +1,4 @@
 export enum Collections {
     BREWLOGS = "brewlogs",
-    EQUIPMENT = "equipment"
+    STUFFS = "stuffs"
 }

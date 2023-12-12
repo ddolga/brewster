@@ -5,10 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="re-organize layout">
-      <change afterPath="$PROJECT_DIR$/webui/src/components/DateTimePickerString.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/dto/create-stuff.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/dto/update-stuff.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/entities/stuff.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/components/AppHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/components/AppNavbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/components/util.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/form/Form.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/services/dto/stuffs.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/equipment.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/entities/equipment.entity.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/equipment.controller.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/equipment.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/equipment.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/equipment.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/equipment/equipment.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/types/enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/types/enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +47,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -60,33 +89,33 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ddolg/IdeaProjects/brewster/webui&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.server.executor&quot;: &quot;Debug&quot;,
-    &quot;npm.webui.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ddolg/IdeaProjects/brewster/webui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.server.executor": "Run",
+    "npm.webui.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ddolg\IdeaProjects\brewster\server" />
@@ -95,7 +124,7 @@
       <recent name="C:\Users\ddolg\IdeaProjects\brewster" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.webui">
+  <component name="RunManager" selected="npm.server">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -232,8 +261,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.webui" />
         <item itemvalue="npm.server" />
+        <item itemvalue="npm.webui" />
         <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
@@ -261,7 +290,7 @@
       <workItem from="1702103567504" duration="439000" />
       <workItem from="1702104023472" duration="5451000" />
       <workItem from="1702154972082" duration="2000" />
-      <workItem from="1702154999949" duration="7856000" />
+      <workItem from="1702154999949" duration="29176000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -295,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702187415912</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="re-organize layout">
+      <option name="closed" value="true" />
+      <created>1702190267032</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702190267033</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
