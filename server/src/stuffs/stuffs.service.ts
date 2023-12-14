@@ -23,22 +23,23 @@ export class StuffsService {
     }
 
     findAll() {
-        return this.collection.find({}).sort({type:1}).toArray();
+        return this.collection.find({}).sort({type: 1}).toArray();
     }
 
     sampleData() {
         return createFixture(stuffsSchema.omit({_id: true}).array().min(20));
     }
 
-    findOne(id: number) {
-        return this.collection.find<Stuff>({_id: new ObjectId(id)});
+    findOne(id: string) {
+        return this.collection.findOne<Stuff>({_id: new ObjectId(id)});
     }
 
-    update(id: number, updateStuffDto: UpdateStuffDto) {
-        return this.collection.updateOne({_id: new ObjectId(id)}, updateStuffDto);
+    update(updateStuffDto: UpdateStuffDto) {
+        const {_id, ...data} = updateStuffDto;
+        return this.collection.updateOne({_id: new ObjectId(_id)}, {$set: data});
     }
 
-    remove(id: number) {
+    remove(id: string) {
         return this.collection.deleteOne({id: new ObjectId(id)})
     }
 }

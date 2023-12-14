@@ -1,7 +1,8 @@
 import {StuffsSummaryDto} from "../services/dto/stuffs.dto.ts";
 import {useGetStuffsQuery} from "../services/api/stuffsApi.ts";
-import {Badge, Card, createStyles, Group, rem, Text} from "@mantine/core";
+import {Badge, Box, Card, createStyles, Flex, Group, rem, Text} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
+import {SummaryContainer} from "../components/SummaryContainer.tsx";
 
 const useStyles = createStyles(() => ({
     card: {
@@ -10,10 +11,10 @@ const useStyles = createStyles(() => ({
     }
 }))
 
-
 interface StuffsItemProps {
     stuff: StuffsSummaryDto;
 }
+
 
 function StuffsCard(props: StuffsItemProps) {
 
@@ -26,10 +27,11 @@ function StuffsCard(props: StuffsItemProps) {
 
     const {classes} = useStyles();
     return <Card className={classes.card} onClick={() => handleClick(stuff._id)}>
-        <Group position='apart' mt='md' align='center'>
-            <Text>{stuff.model}</Text>
-            <Badge>{stuff.type}</Badge>
-        </Group>
+        <Card.Section sx={{textAlign:'right'}}>
+            <Badge color={'blue'}>{stuff.type}</Badge>
+        </Card.Section>
+        <Text>{stuff.make}</Text>
+        <Text>{stuff.model}</Text>
     </Card>
 }
 
@@ -37,8 +39,16 @@ function StuffsCard(props: StuffsItemProps) {
 export function StuffsSummary() {
 
     const data: StuffsSummaryDto[] = useGetStuffsQuery({}).data || []
+    const navigate = useNavigate();
 
-    return <Group sx={{maxWidth: rem(950)}}>
-        {data.map(s => <StuffsCard stuff={s}/>)}
-    </Group>
+    function handleNew() {
+        navigate('/stuffs/new')
+    }
+
+    return <SummaryContainer onNew={handleNew}>
+        <Group sx={{maxWidth: rem(950)}}>
+            {data.map(s => <StuffsCard key={s._id}  stuff={s}/>)}
+        </Group>
+    </SummaryContainer>
+
 }

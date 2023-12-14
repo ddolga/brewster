@@ -1,8 +1,9 @@
 import {produce} from "immer";
-import {get, set} from "lodash";
-import {useReducer} from "react";
+import {get, last, set} from "lodash";
+import {useEffect, useReducer} from "react";
 import {InputPropsType} from "../brewlog/types.ts";
 import {brewlogSchema} from "brewster-types";
+import {ZodIssue} from "zod";
 
 
 type ActionType<T> = {
@@ -23,14 +24,19 @@ function reducer<T extends Something>(state: T, action: ActionType<T>) {
     })
 }
 
-export function useForm<I extends Something>(initialValue: I, readOnly: boolean = false) {
+function getFieldError(field: string, errors: ZodIssue[]) {
+    const err = errors.find(e =>  last(e.path)  === field);
+    return err ? err.message : '';
+}
+
+export function useForm<I extends Something>(data: I, initialValue: I, errors: ZodIssue[], readOnly: boolean = false) {
 
     const [state, dispatch] = useReducer(reducer, initialValue);
 
     function getInputProps<T, E = (v: T) => void>(path: string): InputPropsType<T, E> {
 
-        if (!(path in Object.keys(initialValue))) {
-            throw new Error('path is not compatible')
+        if (initialValue && !(path in initialValue)) {
+            throw new Error(`path ${path} does not exist in state`)
         }
 
         return {
@@ -43,12 +49,22 @@ export function useForm<I extends Something>(initialValue: I, readOnly: boolean 
             }) as E,
             value: get(state, path) as T,
             shape: get(brewlogSchema.shape, path),
-            readOnly: readOnly
+            readOnly: readOnly,
+            error: getFieldError(path, errors)
         }
     }
 
+    useEffect(() => {
+        if (data) {
+            dispatch({type: 'reset', value: data})
+        }
+    }, [data])
+
+
     return {
-        getInputProps
+        getInputProps,
+        dispatch,
+        state: state as I,
     }
 
 }

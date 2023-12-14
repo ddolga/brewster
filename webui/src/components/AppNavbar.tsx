@@ -39,8 +39,8 @@ function MainLink(props: MainLinkProps) {
 
 function MainLinks() {
     return <div>
-        <MainLink path={'/brewlog'} label='Brewster'/>
-        <MainLink path={'/stuffs'} label='Stuffs'/>
+        <MainLink path={'/brewlog'} label='Brew Log'/>
+        <MainLink path={'/stuffs'} label='Sundries'/>
     </div>
 }
 
@@ -49,5 +49,5 @@ export function AppNavbar(props: AppNavbarProps) {
 
     const {opened} = props;
 
-    return opened && <Navbar width={{base: 300}} height={'100%'}><MainLinks/></Navbar>
+    return opened && <Navbar width={{base: 125}} height={'100%'}><MainLinks/></Navbar>
 }

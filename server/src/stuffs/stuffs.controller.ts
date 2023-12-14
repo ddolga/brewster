@@ -9,10 +9,6 @@ import {ApiTags} from "@nestjs/swagger";
 export class StuffsController {
   constructor(private readonly stuffsService: StuffsService) {}
 
-  @Post()
-  create(@Body() createStuffDto: CreateStuffDto) {
-    return this.stuffsService.create(createStuffDto);
-  }
 
   @Get()
   findAll() {
@@ -26,16 +22,21 @@ export class StuffsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.stuffsService.findOne(+id);
+    return this.stuffsService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStuffDto: UpdateStuffDto) {
-    return this.stuffsService.update(+id, updateStuffDto);
+  @Post()
+  create(@Body() createStuffDto: CreateStuffDto) {
+    return this.stuffsService.create(createStuffDto);
+  }
+
+  @Patch()
+  update(@Body() updateStuffDto: UpdateStuffDto) {
+    return this.stuffsService.update(updateStuffDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.stuffsService.remove(+id);
+    return this.stuffsService.remove(id);
   }
 }

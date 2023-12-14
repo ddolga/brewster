@@ -1,4 +1,4 @@
 import {createZodDto} from "nestjs-zod";
-import {createStuffsDto} from "brewster-types";
+import {createStuffsSchema} from "brewster-types";
 
-export class CreateStuffDto extends createZodDto(createStuffsDto){}
+export class CreateStuffDto extends createZodDto(createStuffsSchema){}

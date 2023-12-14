@@ -8,6 +8,7 @@ export interface InputPropsType<T, E> {
     readOnly: boolean,
     value: T,
     onChange: E,
+    error:string,
     shape: ZodTypeAny
 }
 

@@ -1,10 +1,19 @@
+import React from "react";
 import {useGetBrewlogsQuery} from "../services/api/brewlogApi.ts";
 import {MantineReactTable, MRT_ColumnDef, useMantineReactTable} from "mantine-react-table";
 import {BrewlogSummaryDto} from "../services/dto/brewlog.dto.ts";
-import {Button, Container} from "@mantine/core";
+import {createStyles} from "@mantine/core";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
 import {useNavigate} from "react-router-dom";
+import {SummaryContainer} from "../components/SummaryContainer.tsx";
+
+const useStyles = createStyles(() => ({
+    table: {
+        width: '100%'
+    }
+}));
+
 
 const columns: MRT_ColumnDef<BrewlogSummaryDto>[] = [
     {
@@ -52,14 +61,16 @@ export function BrewlogSummary() {
     const table = useMantineReactTable({
         data: data,
         columns: columns,
+        enableFullScreenToggle: false,
+        mantinePaperProps: {sx: {width: '100%', margin: 'auto'}},
         mantineTableBodyRowProps: ({row}) => ({
             onClick: () => handleView(row.original._id)
         }),
-        renderTopToolbarCustomActions: () => <Button color={'green'} onClick={handleNew}>New</Button>
     })
 
-    return <Container>
+    const {classes} = useStyles();
+    return <SummaryContainer onNew={handleNew}>
         <MantineReactTable table={table}/>
-    </Container>
+    </SummaryContainer>
 
 }

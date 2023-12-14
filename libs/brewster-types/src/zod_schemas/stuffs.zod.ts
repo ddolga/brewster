@@ -1,14 +1,19 @@
 import {z} from "zod";
+import {notEmptyString} from "./common";
+
+const typeOfStuffs = ["Brewer", "Coffee", "Grinder", "Basket", "Scale", "Tamper"] as const;
+export const typeOfStuffSchema = z.enum(typeOfStuffs);
 
 export const stuffsSchema = z.object({
     _id: z.string(),
-    model: z.string(),
-    make: z.string(),
-    origin: z.string(),
-    type: z.enum(["brewer", "coffee", "grinder", "basket", "scale", "tamper"]),
-    description: z.string(),
+    type: typeOfStuffSchema,
+    model: notEmptyString,
+    make: notEmptyString,
+    origin: z.string().optional(),
+    size: z.number().int().max(24).optional(),
+    description: z.string().optional(),
 });
 
-export const createStuffsDto = stuffsSchema.omit({_id: true});
+export const createStuffsSchema = stuffsSchema.omit({_id: true});
 
-export const updateStuffsDto = stuffsSchema.partial();
+export const updateStuffsSchema = stuffsSchema.partial();

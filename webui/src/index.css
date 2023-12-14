@@ -57,3 +57,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.mantine-Paper-root{
+    border:0 !important;
+}
