@@ -1,7 +1,7 @@
 import React, {ChangeEventHandler, useEffect, useState} from "react";
 import {
     Accordion,
-    AccordionControlProps,
+    AccordionItemProps,
     createStyles,
     Group,
     Radio,
@@ -11,7 +11,7 @@ import {
     Textarea,
     TextInput
 } from "@mantine/core";
-import {BrewlogSummaryDto, CreateBrewlogDto} from "../services/dto/brewlog.dto.ts";
+import {BrewlogSummaryDto, CreateBrewlogDto, createBrewlogSchema} from "../services/dto/brewlog.dto.ts";
 import dayjs from "dayjs";
 import {useNavigate, useParams} from "react-router-dom";
 import {
@@ -20,8 +20,7 @@ import {
     useGetBrewlogNewTemplateQuery,
     useUpdateEntryMutation
 } from "../services/api/brewlogApi.ts";
-import {BasketTypeType, createBrewlogSchema, updateBrewlogSchema} from "brewster-types";
-import {set,isEmpty} from "lodash";
+import {set} from "lodash";
 import {produce} from "immer";
 import {Brewlog} from "./types.ts";
 import {ValueSlider} from "../components/ValueSlider.tsx";
@@ -31,6 +30,8 @@ import {StyledNumberInput} from "../components/StyledNumberInput.tsx";
 import {useForm} from "../form/Form.ts";
 import {convertViewModeToEnum, DetailsContainer, ViewMode} from "../components/DetailsContainer.tsx";
 import {ZodIssue} from "zod";
+import {BasketTypeType} from "../common/types.ts";
+import {drinkTypeSchema} from "brewster-types";
 
 const useStyles = createStyles((theme) => ({
     field: {
@@ -67,9 +68,9 @@ interface BrewlogViewWDataProps extends BrewlogViewProps {
 }
 
 
-const initialValue: Brewlog = {
+const initialValue: BrewlogSummaryDto = {
     _id: '',
-    date: dayjs().toDate(),
+    date: dayjs().toISOString(),
     grinderSetting: 0,
     grindSize: 0,
     doze_in: 0,
@@ -83,10 +84,10 @@ const initialValue: Brewlog = {
     brew_time: 0,
     preinfusion: false,
     coffee_out: 0,
-    basketType: "single",
+    basketType: 'Single',
     basketSize: 0,
     discarded: false,
-    drinkType: "espresso",
+    drinkType: "Espresso",
     sweetness: 0,
     body: 0,
     acidity: 0,
@@ -133,10 +134,11 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
 
     const {data, viewMode} = props;
 
+    const theId = data ? '_id' in data ? data._id! : null : null;
     const navigate = useNavigate();
     const [readOnly, setReadOnly] = useState<boolean>(true);
     const [updateAction] = useUpdateEntryMutation();
-    const [createNewAction] = useCreateNewEntryMutation();
+    const [createAction] = useCreateNewEntryMutation();
     const [errors, setErrors] = useState<ZodIssue[]>([]);
 
     const {getInputProps, state} = useForm(data, initialValue, errors, readOnly);
@@ -154,37 +156,36 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
         navigate('/brewlog')
     }
 
-
     const handleFormSubmit = (save: boolean) => {
         if (save) {
-            if (viewMode === ViewMode.new) {
-                const {_id, ...rest} = state as BrewlogSummaryDto;
-                const resCreate = createBrewlogSchema.safeParse(rest);
-                if (!resCreate.success) {
-                    setErrors(resCreate.error.issues)
-                } else {
-                    createNewAction(resCreate.data);
-                    setErrors([]);
-                }
+            const res = createBrewlogSchema.safeParse(state);
+            if (!res.success) {
+                setErrors(res.error.issues);
+                return;
             } else {
-                const resSave = updateBrewlogSchema.safeParse(state);
-                if (!resSave.success) {
-                    setErrors(resSave.error.issues)
+                if (viewMode === ViewMode.new) {
+                    createAction(res.data);
                 } else {
-                    updateAction(resSave.data);
-                    setErrors([]);
+                    updateAction({_id: theId!, ...res.data});
                 }
             }
         }
-        if (isEmpty(errors)) {
-            const id = (state as BrewlogSummaryDto)._id;
-            navigate('/brewlog' + (viewMode === ViewMode.new ? '' : '/view/' + id))
-        }
+
+        setErrors([]);
+        const id = (state as BrewlogSummaryDto)._id;
+        navigate('/brewlog' + (viewMode === ViewMode.new ? '' : '/view/' + id))
     }
 
-    function StyledAccordionControl(props: AccordionControlProps & { label: string }) {
-        const {label, ...rest} = props;
-        return <Accordion.Control{...rest}><Text fw={700} color={'#d4dc00'}>{label}</Text></Accordion.Control>
+    function StyledAccordionItem(props: AccordionItemProps) {
+
+        const {value, children, ...rest} = props;
+
+        return <Accordion.Item value={value} {...rest}>
+            <Accordion.Control><Text fw={700} color={'#d4dc00'}>{value}</Text></Accordion.Control>
+            <Accordion.Panel>
+                {children}
+            </Accordion.Panel>
+        </Accordion.Item>
     }
 
 
@@ -197,70 +198,66 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
             <DateTimePickerString className={classes.field} label={'Date'} {...getInputProps<string>('date')} />
             <CheckboxField label='Discarded' {...getInputProps<boolean>('discarded')} readOnly={readOnly}/>
             <Accordion>
-                <Accordion.Item value={'Doze'}>
-                    <StyledAccordionControl label={'Doze'}/>
-                    <Accordion.Panel>
-                        <Select className={classes.field}
-                                label='Drink Type'
-                                placeholder='Pick drink'
-                                data={['Espresso', 'Latte', 'Cappuccino']}
-                                {...getInputProps<string>('drinkType')}
-                        />
-                        <ValueSlider  {...getInputProps<number>('grinderSetting')} label={'Grinder Setting'}/>
-                        <Group className={classes.highlite}>
-                            <StyledNumberInput  {...getInputProps<number>('doze_in')} label={'Doze In'}/>
-                            <StyledNumberInput {...getInputProps<number>('doze_out')} label={'Doze Out'}/>
-                            <StyledNumberInput  {...getInputProps<number>('doze_used')} label={'Doze Used'}/>
+                <StyledAccordionItem value={'Doze'}>
+                    <Select className={classes.field}
+                            label='Drink Type'
+                            placeholder='Pick drink'
+                            data={drinkTypeSchema.options}
+                            {...getInputProps<string>('drinkType')}
+                    />
+                    <ValueSlider  {...getInputProps<number>('grinderSetting')} label={'Grinder Setting'}/>
+                    <Group className={classes.highlite}>
+                        <StyledNumberInput  {...getInputProps<number>('doze_in')} label={'Doze In'}/>
+                        <StyledNumberInput {...getInputProps<number>('doze_out')} label={'Doze Out'}/>
+                        <StyledNumberInput  {...getInputProps<number>('doze_used')} label={'Doze Used'}/>
+                    </Group>
+                </StyledAccordionItem>
+                <StyledAccordionItem value={'Brew'}>
+                    <CheckboxField label='Preinfuse' {...getInputProps<boolean>('preinfusion')}
+                                   readOnly={readOnly}/>
+
+
+                    <Group className={classes.highlite}>
+                        <StyledNumberInput {...getInputProps<number>('coffee_out')} label={'Coffee Out'}/>
+                        <StyledNumberInput {...getInputProps<number>('brew_time')} label={'Brew Time'}/>
+                    </Group>
+                </StyledAccordionItem>
+                <StyledAccordionItem value={'Basket'}>
+                    <Select label='Basket'
+                            placeholder='Select basket...'
+                            data={[]}
+
+                    />
+                    <Radio.Group
+                        className={classes.field}
+                        name='basketType'
+                        label='Basket Type'
+                        {...getInputProps<BasketTypeType>('basketType')}
+                    >
+                        <Group>
+                            <Radio value='Single' disabled={readOnly} label={'Single'}/>
+                            <Radio value='Double' disabled={readOnly} label={'Double'}/>
                         </Group>
-                    </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item value={'Brew'}>
-                    <StyledAccordionControl label={'Brew'}/>
-                    <Accordion.Panel>
-                        <CheckboxField label='Preinfuse' {...getInputProps<boolean>('preinfusion')}
-                                       readOnly={readOnly}/>
-                        <Radio.Group
-                            className={classes.field}
-                            name='basketType'
-                            label='Basket Type'
-                            {...getInputProps<BasketTypeType>('basketType')}
-                        >
-                            <Group>
-                                <Radio value='single' disabled={readOnly} label={'Single'}/>
-                                <Radio value='double' disabled={readOnly} label={'Double'}/>
-                            </Group>
-                        </Radio.Group>
-                        <ValueSlider {...getInputProps<number>('basketSize')} label={'Basket Size'}/>
-                        <Group className={classes.highlite}>
-                            <StyledNumberInput {...getInputProps<number>('coffee_out')} label={'Coffee Out'}/>
-                            <StyledNumberInput {...getInputProps<number>('brew_time')} label={'Brew Time'}/>
-                        </Group>
-                    </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item value={'Coffee'}>
-                    <StyledAccordionControl label={'Coffee'}/>
-                    {/*coffee*/}
-                    <Accordion.Panel>
-                        <TextInput className={classes.field} label={'Coffee'}
-                                   {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('coffee')} />
-                        <TextInput className={classes.field} label={'Roaster'}
-                                   {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('roaster')} />
-                        <TextInput className={classes.field} label={'Origin'}
-                                   {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('origin')} />
-                        <CheckboxField label='Decaff' {...getInputProps<boolean>('decaff')} readOnly={readOnly}/>
-                    </Accordion.Panel>
-                </Accordion.Item>
-                <Accordion.Item value={'Rating'}>
-                    <StyledAccordionControl label={'Rating'}/>
-                    <Accordion.Panel>
-                        <ValueSlider {...getInputProps<number>('sweetness')} label={'Sweetness Out'}/>
-                        <ValueSlider {...getInputProps<number>('body')} label={'Body'}/>
-                        <ValueSlider {...getInputProps<number>('acidity')} label={'Acidity'}/>
-                        <Textarea className={classes.field} label='Comment'
-                                  {...getInputProps<string, ChangeEventHandler<HTMLTextAreaElement>>('comment')}
-                        />
-                    </Accordion.Panel>
-                </Accordion.Item>
+                    </Radio.Group>
+                    <ValueSlider {...getInputProps<number>('basketSize')} label={'Basket Size'}/>
+                </StyledAccordionItem>
+                <StyledAccordionItem value={'Coffee'}>
+                    <TextInput className={classes.field} label={'Coffee'}
+                               {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('coffee')} />
+                    <TextInput className={classes.field} label={'Roaster'}
+                               {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('roaster')} />
+                    <TextInput className={classes.field} label={'Origin'}
+                               {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('origin')} />
+                    <CheckboxField label='Decaff' {...getInputProps<boolean>('decaff')} readOnly={readOnly}/>
+                </StyledAccordionItem>
+                <StyledAccordionItem value={'Rating'}>
+                    <ValueSlider {...getInputProps<number>('sweetness')} label={'Sweetness Out'}/>
+                    <ValueSlider {...getInputProps<number>('body')} label={'Body'}/>
+                    <ValueSlider {...getInputProps<number>('acidity')} label={'Acidity'}/>
+                    <Textarea className={classes.field} label='Comment'
+                              {...getInputProps<string, ChangeEventHandler<HTMLTextAreaElement>>('comment')}
+                    />
+                </StyledAccordionItem>
             </Accordion>
         </form>
     </DetailsContainer>

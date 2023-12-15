@@ -1,6 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BrewlogSummaryDto, brewlogSummarySchema, CreateBrewlogDto, UpdateBrewlogDto} from "../dto/brewlog.dto.ts";
-import {createBrewlogSchema} from "brewster-types";
 
 
 const brewlogApi = createApi({
@@ -14,8 +13,9 @@ const brewlogApi = createApi({
             query: () => ({url: ''}),
             providesTags: ['Brewlog'],
             transformResponse: (response) => {
-                return brewlogSummarySchema.array().parse(response);
-            }
+                const boo = brewlogSummarySchema.array().parse(response);
+                return boo;
+            },
         }),
         getBrewlogEntry: build.query({
             query: (args: {
@@ -23,6 +23,7 @@ const brewlogApi = createApi({
             }) => ({
                 url: `/${args.id}`
             }),
+            providesTags:['Brewlog'],
             transformResponse: (response: BrewlogSummaryDto) => {
                 return brewlogSummarySchema.parse(response) as BrewlogSummaryDto;
             }
@@ -34,8 +35,8 @@ const brewlogApi = createApi({
                 url: `/new/${args.id}`
             }),
             transformResponse: (response: BrewlogSummaryDto) => {
-                return createBrewlogSchema.parse(response) as CreateBrewlogDto;
-            }
+                return brewlogSummarySchema.omit({_id:true}).parse(response);
+            },
         }),
         createNewEntry: build.mutation({
             query(entry: CreateBrewlogDto) {

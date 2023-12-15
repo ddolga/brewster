@@ -10,7 +10,8 @@ export const stuffsSchema = z.object({
     model: notEmptyString,
     make: notEmptyString,
     origin: z.string().optional(),
-    size: z.number().int().max(24).optional(),
+    basketSize: z.number().int().max(24).optional(),
+    basketType:z.enum(['Single','Double']).optional(),
     description: z.string().optional(),
 });
 

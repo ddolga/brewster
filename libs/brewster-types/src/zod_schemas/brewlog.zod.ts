@@ -10,7 +10,12 @@ const dateSchema = z.coerce.date();
 
 const hasId = z.object({_id: z.string()})
 
-export type BasketTypeType = 'single' | 'double'
+const drinkTypes = ["Americano", "Cappuccino", "Espresso", "Flat White", "Latte"] as const;
+
+export const drinkTypeSchema = z.enum(drinkTypes);
+
+export const basketTypeSchema = z.enum(['Single','Double']);
+
 export const brewlogSchema = z.object({
     _id: z.string(),
     date: dateSchema.min(dayjs('01/01/2023').toDate()), // date coffee made
@@ -28,10 +33,10 @@ export const brewlogSchema = z.object({
     tP: z.number().positive().max(20).optional().describe('preinfusion pause'),
     tI: z.number().positive().max(10).optional().describe('preinfusion duration'),
     coffee_out: rnd(z.number().min(6).max(50)).describe('grams of coffee produced'),
-    basketType: z.enum(["single", "double"]),
+    basketType: basketTypeSchema,
     basketSize: z.number().int().min(7).max(24),
     discarded: z.boolean().describe('not drinkable'),
-    drinkType: z.enum(["espresso", "latte", "cappuccino"]),
+    drinkType: drinkTypeSchema,
     sweetness: z.number().int().min(1).max(10).optional(),
     body: z.number().int().min(1).max(10).optional(),
     acidity: z.number().int().min(1).max(10).optional(),
@@ -40,6 +45,6 @@ export const brewlogSchema = z.object({
     comment: z.string()
 });
 
-export const createBrewlogSchema = brewlogSchema.omit({_id: true});
-
-export const updateBrewlogSchema = hasId.merge(createBrewlogSchema.partial());
+// export const createBrewlogSchema = brewlogSchema.omit({_id: true});
+//
+// export const updateBrewlogSchema = hasId.merge(createBrewlogSchema.partial());

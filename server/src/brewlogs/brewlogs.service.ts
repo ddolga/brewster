@@ -2,8 +2,8 @@ import {Inject, Injectable} from '@nestjs/common';
 import {Db, ObjectId} from "mongodb";
 import {DATABASE_CONNECTION} from "../mongo/mongo.module";
 import {Collections} from "../types/enum";
-import {CreateBrewlogDto, UpdateBrewlogDto} from "./dto";
-import {brewlogSchema, updateBrewlogSchema} from "brewster-types";
+import {CreateBrewlogDto, UpdateBrewlogDto, updateBrewlogSchema} from "./dto";
+import {brewlogSchema} from "brewster-types";
 import {createFixture} from "zod-fixture";
 import {Brewlog} from "./entities/brewlog.entity";
 import dayjs from "dayjs";
@@ -24,10 +24,10 @@ const initialValue: Brewlog = {
     brew_time: 25,
     preinfusion: false,
     coffee_out: 6,
-    basketType: "single",
+    basketType: 'Single',
     basketSize: 7,
     discarded: false,
-    drinkType: "espresso",
+    drinkType: "Espresso",
     sweetness: 1,
     body: 1,
     acidity: 1,
@@ -44,9 +44,6 @@ export class BrewlogsService {
         return this.conn.collection(Collections.BREWLOGS);
     }
 
-    create(createBrewlogDto: CreateBrewlogDto) {
-        return this.collection.insertOne(createBrewlogDto);
-    }
 
     findAll() {
         return this.collection.find({}).sort({date: -1}).toArray();
@@ -70,12 +67,15 @@ export class BrewlogsService {
         return {...rest, date: new Date()}
     }
 
+    create(createBrewlogDto: CreateBrewlogDto) {
+        return this.collection.insertOne(createBrewlogDto);
+    }
+
     async update(updateBrewlogDto: UpdateBrewlogDto) {
         const validate = updateBrewlogSchema.safeParse(updateBrewlogDto);
         if (validate.success) {
             const {_id, ...data} = validate.data;
-            const res = await this.collection.updateOne({_id: new ObjectId(_id)}, {$set: data});
-            return res;
+            return await this.collection.updateOne({_id: new ObjectId(_id)}, {$set: data});
         }
 
         throw new Error('Failed to validate data')

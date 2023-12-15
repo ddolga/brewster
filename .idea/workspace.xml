@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="re-organize layout">
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/components/DetailsContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webui/src/components/SummaryContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webui/src/common/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.rush/temp/package-deps_build.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/.rush/temp/package-deps_build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/dto/create-stuff.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/dto/create-stuff.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/dto/update-stuff.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/dto/update-stuff.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/components/AppNavbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/AppNavbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/form/Form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/form/Form.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/stuffs.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/dto/stuffs.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,33 +69,33 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ddolg/IdeaProjects/brewster/webui&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.server.executor&quot;: &quot;Debug&quot;,
-    &quot;npm.webui.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ddolg/IdeaProjects/brewster/webui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.server.executor": "Debug",
+    "npm.webui.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\prettier",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
+    "ts.external.directory.path": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ddolg\IdeaProjects\brewster\server" />
@@ -282,7 +273,8 @@
       <workItem from="1702154999949" duration="36194000" />
       <workItem from="1702442814821" duration="36000" />
       <workItem from="1702442869682" duration="9504000" />
-      <workItem from="1702517136434" duration="16346000" />
+      <workItem from="1702517136434" duration="17530000" />
+      <workItem from="1702597914023" duration="9304000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -332,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702348262270</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="re-organize layout">
+      <option name="closed" value="true" />
+      <created>1702597105880</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702597105880</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

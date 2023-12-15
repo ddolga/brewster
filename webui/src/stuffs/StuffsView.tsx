@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Select, Stack, Textarea, TextInput} from "@mantine/core";
+import React, {Fragment, useEffect, useState} from "react";
+import {Group, Radio, Select, Stack, Textarea, TextInput} from "@mantine/core";
 import {useCreateStuffsMutation, useGetStuffsDetailQuery, useUpdateStuffsMutation} from "../services/api/stuffsApi.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {CreateStuffsDto, StuffsSummaryDto, UpdateSuffsDto} from "../services/dto/stuffs.dto.ts";
@@ -7,13 +7,16 @@ import {useForm} from "../form/Form.ts";
 import {convertViewModeToEnum, DetailsContainer, ViewMode} from "../components/DetailsContainer.tsx";
 import {createStuffsSchema, typeOfStuffSchema} from "brewster-types";
 import {ZodIssue} from "zod";
+import {ValueSlider} from "../components/ValueSlider.tsx";
+import {BasketTypeType} from "../common/types.ts";
 
 const initialValue: CreateStuffsDto = {
     model: '',
     make: '',
     origin: '',
     type: 'Coffee',
-    size: 0,
+    basketSize: 0,
+    basketType: 'Double',
     description: ''
 }
 
@@ -53,6 +56,15 @@ function StuffsViewWData(props: StuffsWDataProps) {
         setReadOnly(!(viewMode === ViewMode.new || viewMode === ViewMode.edit))
     }, [viewMode]);
 
+    function handleEditClick() {
+        const id = (state as StuffsSummaryDto)._id;
+        navigate(`/stuffs/edit/${id}`)
+    }
+
+    function handleOnClose() {
+        navigate('/stuffs')
+    }
+
     const handleFormSubmit = (save: boolean) => {
         if (save) {
             const res = createStuffsSchema.safeParse(state);
@@ -73,15 +85,6 @@ function StuffsViewWData(props: StuffsWDataProps) {
         navigate('/stuffs' + (viewMode === ViewMode.new ? '' : '/view/' + id))
     }
 
-    function handleOnClose() {
-        navigate('/stuffs')
-    }
-
-    function handleEditClick() {
-        const id = (state as StuffsSummaryDto)._id;
-        navigate(`/stuffs/edit/${id}`)
-    }
-
 
     const typeOfStuffsOptions: string[] = typeOfStuffSchema.options;
 
@@ -96,7 +99,20 @@ function StuffsViewWData(props: StuffsWDataProps) {
                 <TextInput label='Brand' {...getInputProps('make')}/>
                 <TextInput label='Name' {...getInputProps('model')}  />
                 <TextInput label="Origin" {...getInputProps('origin')}  />
-                {state.type === 'Tamper' && <TextInput label="Size" {...getInputProps('size')}  />}
+
+                {state.type === 'Basket' && <Fragment>
+                    <Radio.Group
+                        name='basketType'
+                        label='Basket Type'
+                        {...getInputProps<BasketTypeType>('basketType')}
+                    >
+                        <Group>
+                            <Radio value='Single' disabled={readOnly} label={'Single'}/>
+                            <Radio value='Double' disabled={readOnly} label={'Double'}/>
+                        </Group>
+                    </Radio.Group>
+                    <ValueSlider {...getInputProps<number>('basketSize')} label={'Basket Size'}/>
+                </Fragment>}
                 <Textarea label='Description' {...getInputProps('description')}  />
             </Stack>
         </form>

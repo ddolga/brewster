@@ -1,5 +1,5 @@
 import {z, ZodAny, ZodTypeAny} from "zod";
-import {brewlogSchema, createBrewlogSchema} from "brewster-types";
+import {brewlogSchema} from "brewster-types";
 
 export type Brewlog = z.infer<typeof brewlogSchema>;
 

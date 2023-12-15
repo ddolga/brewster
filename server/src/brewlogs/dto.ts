@@ -1,6 +1,9 @@
 import "zod";
 import {createZodDto} from "nestjs-zod";
-import {createBrewlogSchema, updateBrewlogSchema} from "brewster-types";
+import {brewlogSchema} from "brewster-types";
+
+const createBrewlogSchema = brewlogSchema.omit({_id: true});
+export const updateBrewlogSchema = brewlogSchema.partial();
 
 export class CreateBrewlogDto extends createZodDto(createBrewlogSchema) {
 }

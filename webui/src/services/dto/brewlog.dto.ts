@@ -1,8 +1,13 @@
 import {z} from "zod";
-import {brewlogSchema, createBrewlogSchema, updateBrewlogSchema} from "brewster-types"
+import {brewlogSchema} from "brewster-types"
 
 export const brewlogSummarySchema = brewlogSchema
     .extend({date: z.string().datetime()})
+
+export const createBrewlogSchema = brewlogSummarySchema.omit({_id:true});
+
+export const updateBrewlogSchema = brewlogSummarySchema.partial();
+
 
 export type BrewlogSummaryDto = z.infer<typeof brewlogSummarySchema>
 

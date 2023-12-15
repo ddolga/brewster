@@ -16,7 +16,8 @@ const stuffsApi = createApi({
         getStuffsDetail: build.query({
             query: (args: { id: string }) => ({
                 url: `/${args.id}`
-            })
+            }),
+            providesTags: ['Stuffs'],
         }),
         createStuffs: build.mutation({
             query(entry: CreateStuffsDto) {
@@ -25,7 +26,8 @@ const stuffsApi = createApi({
                     method: 'POST',
                     body: entry
                 }
-            }
+            },
+            invalidatesTags: ['Stuffs']
         }),
         updateStuffs: build.mutation(({
             query(entry: UpdateSuffsDto) {
@@ -34,7 +36,17 @@ const stuffsApi = createApi({
                     method: 'PATCH',
                     body: entry
                 }
-            }
+            },
+            invalidatesTags:['Stuffs']
+        })),
+        deleteStuffs: build.mutation(({
+            query(id: string) {
+                return {
+                    url: `/${id}`,
+                    method: 'DELETE',
+                }
+            },
+            invalidatesTags:['Stuffs']
         }))
     })
 })
