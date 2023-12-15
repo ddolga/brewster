@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {CreateStuffsDto, UpdateSuffsDto} from "../dto/stuffs.dto.ts";
+import {TypeOfStuff} from "../../common/types.ts";
 
 
 const stuffsApi = createApi({
@@ -47,13 +48,19 @@ const stuffsApi = createApi({
                 }
             },
             invalidatesTags:['Stuffs']
-        }))
+        })),
+        selectStuffs:build.query({
+            query:(args:{type:TypeOfStuff}) => ({
+               url:`/select/${args.type}`
+            })
+        })
     })
 })
 
 export const {
     useGetStuffsQuery,
     useGetStuffsDetailQuery,
+    useSelectStuffsQuery,
     useCreateStuffsMutation,
     useUpdateStuffsMutation,
 } = stuffsApi;

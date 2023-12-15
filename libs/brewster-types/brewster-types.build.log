@@ -1,7 +1,7 @@
 Invoking: heft build --clean 
  ---- build started ---- 
-[build:clean] Deleted 16 files and 1 folder
+[build:clean] Deleted 20 files and 1 folder
 [build:typescript] The TypeScript compiler version 5.2.2 is newer than the latest version that was tested with Heft (5.0); it may not work correctly.
 [build:typescript] Using TypeScript version 5.2.2
- ---- build finished (2.099s) ---- 
--------------------- Finished (2.103s) --------------------
+ ---- build finished (2.108s) ---- 
+-------------------- Finished (2.112s) --------------------

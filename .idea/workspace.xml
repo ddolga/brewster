@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="re-organize layout">
-      <change afterPath="$PROJECT_DIR$/webui/src/common/types.ts" afterDir="false" />
+    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="more for the fire">
+      <change afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/select.zod.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/select.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/select.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.zod.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/common/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/common/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -274,7 +274,7 @@
       <workItem from="1702442814821" duration="36000" />
       <workItem from="1702442869682" duration="9504000" />
       <workItem from="1702517136434" duration="17530000" />
-      <workItem from="1702597914023" duration="9304000" />
+      <workItem from="1702597914023" duration="15416000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -332,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702597105880</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="more for the fire">
+      <option name="closed" value="true" />
+      <created>1702624347540</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702624347540</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +366,8 @@
     <MESSAGE value="Remove outdated files and add brewlogs server logic&#10;&#10;Clean up redundant files such .idea folder, gitignore and several unneeded .ts files and add server logic for dealing with Brewlogs. &#10;&#10;In libs/types/src/zod_schemas/brewlog.zod.ts, the Brewlog Type has been removed, while a new file with the same functionality was added in server/src/brewlogs/entities. &#10;&#10;A whole bunch of new server files has been created in the project structure at server/src/brewlogs, containing new controllers, services and module logic for the Brewlogs server side application. &#10;&#10;An additional set of files related to the Brewlogs has been included in the libs folder.&#10;&#10;Several config files have been added, and some removed in both the server and libs folders. These changes are clean up redundant old files and set up for new server application requirements.&#10;&#10;Clean up was necessary due to changes in the project structure and the addition of new functionality on the server side. The new files are needed to implement the logic of the Brewlogs server application." />
     <MESSAGE value="started building the input form" />
     <MESSAGE value="re-organize layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="re-organize layout" />
+    <MESSAGE value="more for the fire" />
+    <option name="LAST_COMMIT_MESSAGE" value="more for the fire" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

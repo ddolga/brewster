@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {Group, Radio, Select, Stack, Textarea, TextInput} from "@mantine/core";
+import {Checkbox, Group, Radio, Select, Stack, Textarea, TextInput} from "@mantine/core";
 import {useCreateStuffsMutation, useGetStuffsDetailQuery, useUpdateStuffsMutation} from "../services/api/stuffsApi.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {CreateStuffsDto, StuffsSummaryDto, UpdateSuffsDto} from "../services/dto/stuffs.dto.ts";
@@ -9,6 +9,7 @@ import {createStuffsSchema, typeOfStuffSchema} from "brewster-types";
 import {ZodIssue} from "zod";
 import {ValueSlider} from "../components/ValueSlider.tsx";
 import {BasketTypeType} from "../common/types.ts";
+import {CheckboxField} from "../components/CheckboxField.tsx";
 
 const initialValue: CreateStuffsDto = {
     model: '',
@@ -17,7 +18,8 @@ const initialValue: CreateStuffsDto = {
     type: 'Coffee',
     basketSize: 0,
     basketType: 'Double',
-    description: ''
+    description: '',
+    decaff:false,
 }
 
 interface StuffsWDataProps {
@@ -28,6 +30,8 @@ interface StuffsWDataProps {
 export function StuffsViewNew() {
     return <StuffsViewWData viewMode={ViewMode.new} data={initialValue}/>
 }
+
+const typeOfStuffsOptions: string[] = typeOfStuffSchema.options;
 
 export function StuffsView() {
 
@@ -86,8 +90,6 @@ function StuffsViewWData(props: StuffsWDataProps) {
     }
 
 
-    const typeOfStuffsOptions: string[] = typeOfStuffSchema.options;
-
     return <DetailsContainer readOnly={readOnly} viewMode={viewMode} onEdit={handleEditClick}
                              onSubmit={handleFormSubmit} onClose={handleOnClose}>
         <form>
@@ -99,7 +101,7 @@ function StuffsViewWData(props: StuffsWDataProps) {
                 <TextInput label='Brand' {...getInputProps('make')}/>
                 <TextInput label='Name' {...getInputProps('model')}  />
                 <TextInput label="Origin" {...getInputProps('origin')}  />
-
+                {state.type === 'Coffee' && <CheckboxField label='Decaff'  {...getInputProps<boolean>('decaff')} readOnly={readOnly}/>}
                 {state.type === 'Basket' && <Fragment>
                     <Radio.Group
                         name='basketType'

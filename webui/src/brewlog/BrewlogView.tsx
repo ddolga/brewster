@@ -4,7 +4,6 @@ import {
     AccordionItemProps,
     createStyles,
     Group,
-    Radio,
     rem,
     Select,
     Text,
@@ -30,8 +29,10 @@ import {StyledNumberInput} from "../components/StyledNumberInput.tsx";
 import {useForm} from "../form/Form.ts";
 import {convertViewModeToEnum, DetailsContainer, ViewMode} from "../components/DetailsContainer.tsx";
 import {ZodIssue} from "zod";
-import {BasketTypeType} from "../common/types.ts";
-import {drinkTypeSchema} from "brewster-types";
+import {drinkTypeSchema, selectSchema} from "brewster-types";
+import {TypeOfStuff} from "../common/types.ts";
+import {useSelectStuffsQuery} from "../services/api/stuffsApi.ts";
+import {z} from 'zod';
 
 const useStyles = createStyles((theme) => ({
     field: {
@@ -130,6 +131,24 @@ export function BrewlogNew(props: BrewlogViewProps) {
     return data && <BrewlogViewWData viewMode={ViewMode.new} data={data} {...props}/>
 }
 
+interface SelectStuffProps {
+    stuffType: TypeOfStuff
+}
+
+type Select = z.infer<typeof selectSchema>;
+
+function mapSelections(selections: Select[]): string[] {
+    return selections.map(select => select.label);
+}
+
+function SelectStuff(props: SelectStuffProps) {
+
+    const {stuffType} = props;
+    const selections: Select[] = useSelectStuffsQuery({type: stuffType}).data || [];
+
+    return <Select label={stuffType} placeholder={`Select ${stuffType}`} data={mapSelections(selections)}/>
+}
+
 export function BrewlogViewWData(props: BrewlogViewWDataProps) {
 
     const {data, viewMode} = props;
@@ -215,40 +234,16 @@ export function BrewlogViewWData(props: BrewlogViewWDataProps) {
                 <StyledAccordionItem value={'Brew'}>
                     <CheckboxField label='Preinfuse' {...getInputProps<boolean>('preinfusion')}
                                    readOnly={readOnly}/>
-
-
                     <Group className={classes.highlite}>
                         <StyledNumberInput {...getInputProps<number>('coffee_out')} label={'Coffee Out'}/>
                         <StyledNumberInput {...getInputProps<number>('brew_time')} label={'Brew Time'}/>
                     </Group>
                 </StyledAccordionItem>
                 <StyledAccordionItem value={'Basket'}>
-                    <Select label='Basket'
-                            placeholder='Select basket...'
-                            data={[]}
-
-                    />
-                    <Radio.Group
-                        className={classes.field}
-                        name='basketType'
-                        label='Basket Type'
-                        {...getInputProps<BasketTypeType>('basketType')}
-                    >
-                        <Group>
-                            <Radio value='Single' disabled={readOnly} label={'Single'}/>
-                            <Radio value='Double' disabled={readOnly} label={'Double'}/>
-                        </Group>
-                    </Radio.Group>
-                    <ValueSlider {...getInputProps<number>('basketSize')} label={'Basket Size'}/>
+                    <SelectStuff stuffType={'Basket'}/>
                 </StyledAccordionItem>
                 <StyledAccordionItem value={'Coffee'}>
-                    <TextInput className={classes.field} label={'Coffee'}
-                               {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('coffee')} />
-                    <TextInput className={classes.field} label={'Roaster'}
-                               {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('roaster')} />
-                    <TextInput className={classes.field} label={'Origin'}
-                               {...getInputProps<string, ChangeEventHandler<HTMLInputElement>>('origin')} />
-                    <CheckboxField label='Decaff' {...getInputProps<boolean>('decaff')} readOnly={readOnly}/>
+                    <SelectStuff stuffType={'Coffee'}/>
                 </StyledAccordionItem>
                 <StyledAccordionItem value={'Rating'}>
                     <ValueSlider {...getInputProps<number>('sweetness')} label={'Sweetness Out'}/>
