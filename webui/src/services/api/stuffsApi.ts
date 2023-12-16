@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {CreateStuffsDto, UpdateSuffsDto} from "../dto/stuffs.dto.ts";
-import {TypeOfStuff} from "../../common/types.ts";
+import {CreateStuffsDto, UpdateSuffsDto} from "../../types/dto/stuffs.dto.ts";
+import {TypeOfStuff} from "../../types/common.ts";
 
 
 const stuffsApi = createApi({

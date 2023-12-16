@@ -1,5 +1,10 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BrewlogSummaryDto, brewlogSummarySchema, CreateBrewlogDto, UpdateBrewlogDto} from "../dto/brewlog.dto.ts";
+import {
+    BrewlogSummaryDto,
+    brewlogSummarySchema,
+    CreateBrewlogDto,
+    UpdateBrewlogDto
+} from "../../types/dto/brewlog.dto.ts";
 
 
 const brewlogApi = createApi({

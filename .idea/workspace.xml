@@ -4,19 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="more for the fire">
-      <change afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/select.zod.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/stuffs/select.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/stuffs/select.service.ts" afterDir="false" />
+    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="more fixins">
+      <change afterPath="$PROJECT_DIR$/server/rest-scripts/brewlog.rest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/brewlogs/pipelines.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/stuffs/dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/types/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/select.zod.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/dto/create-stuff.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/dto/update-stuff.dto.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/select.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/select.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/select.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/select.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/common/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/common/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/brewlog.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/common/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/common.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/components/CheckboxField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/CheckboxField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/form/Form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/form/Form.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/dto/brewlog.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/stuffs.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/dto/stuffs.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,10 +69,24 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="7ed371af-06a2-4f5c-9b45-f50043366394" />
+        <option name="accountId" value="49d7c633-3166-4c63-8af5-f26df997b235" />
         <option name="url" value="https://github.com/ddolga/brewster.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" environment="test" />
+  </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "contexts": [
+    {
+      "name": "docker-desktop"
+    }
+  ],
+  "isMigrated": true
+}]]></component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="docker-desktop" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -75,6 +113,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -93,7 +132,8 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "settings.typescriptcompiler",
-    "ts.external.directory.path": "C:\\Users\\ddolg\\IdeaProjects\\brewster\\server\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "/Users/denisdogachev/IdeaProjects/brewster/webui/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -103,8 +143,11 @@
       <recent name="C:\Users\ddolg\IdeaProjects\brewster\libs\types" />
       <recent name="C:\Users\ddolg\IdeaProjects\brewster" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/webui/src/types" />
+    </key>
   </component>
-  <component name="RunManager" selected="npm.webui">
+  <component name="RunManager" selected="npm.server">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -125,17 +168,6 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="ENV_FILES" value="" />
@@ -185,6 +217,20 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
+    </configuration>
+    <configuration name="brewlog | GET all brewlogs" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/rest-scripts/brewlog.rest" requestIdentifier="GET all brewlogs" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
@@ -236,13 +282,15 @@
     <list>
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
+      <item itemvalue="HTTP Request.brewlog | GET all brewlogs" />
       <item itemvalue="npm.server" />
       <item itemvalue="npm.webui" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.webui" />
         <item itemvalue="npm.server" />
+        <item itemvalue="HTTP Request.brewlog | GET all brewlogs" />
+        <item itemvalue="npm.webui" />
         <item itemvalue="Docker.docker-compose.yml.mongo: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
@@ -275,6 +323,7 @@
       <workItem from="1702442869682" duration="9504000" />
       <workItem from="1702517136434" duration="17530000" />
       <workItem from="1702597914023" duration="15416000" />
+      <workItem from="1702654264920" duration="15492000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

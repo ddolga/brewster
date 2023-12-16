@@ -1,12 +1,11 @@
 import {Inject, Injectable} from '@nestjs/common';
-import {CreateStuffDto} from './dto/create-stuff.dto';
-import {UpdateStuffDto} from './dto/update-stuff.dto';
 import {Db, ObjectId} from "mongodb";
 import {DATABASE_CONNECTION} from "../mongo/mongo.module";
 import {Collections} from "../types/enum";
 import {Stuff} from "./entities/stuff.entity";
 import {createFixture} from "zod-fixture";
 import {stuffsSchema} from "brewster-types";
+import {CreateStuffDto, UpdateStuffDto} from "./dto";
 
 @Injectable()
 export class StuffsService {

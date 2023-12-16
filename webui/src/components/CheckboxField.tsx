@@ -1,6 +1,6 @@
-import {InputPropsType, InputPropsTypeWithLabel} from "../brewlog/types.ts";
 import {Checkbox, createStyles, rem} from "@mantine/core";
 import React, {ChangeEventHandler} from "react";
+import {InputPropsTypeWithLabel} from "../types/brewlog.ts";
 
 const useStyles = createStyles((theme) => ({
     field: {

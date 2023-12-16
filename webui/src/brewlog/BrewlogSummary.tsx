@@ -1,12 +1,12 @@
 import React from "react";
 import {useGetBrewlogsQuery} from "../services/api/brewlogApi.ts";
 import {MantineReactTable, MRT_ColumnDef, useMantineReactTable} from "mantine-react-table";
-import {BrewlogSummaryDto} from "../services/dto/brewlog.dto.ts";
 import {createStyles} from "@mantine/core";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
 import {useNavigate} from "react-router-dom";
 import {SummaryContainer} from "../components/SummaryContainer.tsx";
+import {BrewlogSummaryDto} from "../types/dto/brewlog.dto.ts";
 
 const useStyles = createStyles(() => ({
     table: {

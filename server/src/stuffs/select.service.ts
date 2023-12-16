@@ -2,14 +2,9 @@ import {Inject, Injectable} from "@nestjs/common";
 import {Db} from "mongodb";
 import {DATABASE_CONNECTION} from "../mongo/mongo.module";
 import {Collections} from "../types/enum";
-import {z} from "zod";
-import {selectSchema, typeOfStuffSchema} from "brewster-types";
 import {Stuff} from "./entities/stuff.entity";
+import {Select, TypeOfStuff} from "../types/types";
 
-
-export type TypeOfStuff = z.infer<typeof typeOfStuffSchema>;
-
-type Select = z.infer<typeof selectSchema>
 
 @Injectable()
 export class SelectService {

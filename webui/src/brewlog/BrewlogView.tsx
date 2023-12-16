@@ -1,16 +1,5 @@
 import React, {ChangeEventHandler, useEffect, useState} from "react";
-import {
-    Accordion,
-    AccordionItemProps,
-    createStyles,
-    Group,
-    rem,
-    Select,
-    Text,
-    Textarea,
-    TextInput
-} from "@mantine/core";
-import {BrewlogSummaryDto, CreateBrewlogDto, createBrewlogSchema} from "../services/dto/brewlog.dto.ts";
+import {Accordion, AccordionItemProps, createStyles, Group, rem, Select, Text, Textarea} from "@mantine/core";
 import dayjs from "dayjs";
 import {useNavigate, useParams} from "react-router-dom";
 import {
@@ -21,18 +10,18 @@ import {
 } from "../services/api/brewlogApi.ts";
 import {set} from "lodash";
 import {produce} from "immer";
-import {Brewlog} from "./types.ts";
 import {ValueSlider} from "../components/ValueSlider.tsx";
 import {CheckboxField} from "../components/CheckboxField.tsx";
 import {DateTimePickerString} from "../components/DateTimePickerString.tsx";
 import {StyledNumberInput} from "../components/StyledNumberInput.tsx";
 import {useForm} from "../form/Form.ts";
 import {convertViewModeToEnum, DetailsContainer, ViewMode} from "../components/DetailsContainer.tsx";
-import {ZodIssue} from "zod";
-import {drinkTypeSchema, selectSchema} from "brewster-types";
-import {TypeOfStuff} from "../common/types.ts";
+import {z, ZodIssue} from "zod";
+import {createBrewlogSchema, drinkTypeSchema, selectSchema} from "brewster-types";
 import {useSelectStuffsQuery} from "../services/api/stuffsApi.ts";
-import {z} from 'zod';
+import {Brewlog} from "../types/brewlog.ts";
+import {TypeOfStuff} from "../types/common.ts";
+import {BrewlogSummaryDto, CreateBrewlogDto} from "../types/dto/brewlog.dto.ts";
 
 const useStyles = createStyles((theme) => ({
     field: {
@@ -69,29 +58,29 @@ interface BrewlogViewWDataProps extends BrewlogViewProps {
 }
 
 
-const initialValue: BrewlogSummaryDto = {
-    _id: '',
+const select: Select = {
+    sourceId: '',
+    label: ''
+}
+
+const initialValue: CreateBrewlogDto = {
     date: dayjs().toISOString(),
-    grinderSetting: 0,
-    grindSize: 0,
-    doze_in: 0,
-    doze_out: 0,
-    doze_used: 0,
-    coffee: "Some Coffee",
-    origin: "",
+    grinderSetting: 1,
+    grindSize: 400,
+    doze_in: 7,
+    doze_out: 7,
+    doze_used: 7,
+    coffee: select,
     comment: "",
-    roaster: "",
-    decaff: false,
-    brew_time: 0,
+    brew_time: 25,
     preinfusion: false,
-    coffee_out: 0,
-    basketType: 'Single',
-    basketSize: 0,
+    coffee_out: 6,
     discarded: false,
     drinkType: "Espresso",
-    sweetness: 0,
-    body: 0,
-    acidity: 0,
+    basket: select,
+    sweetness: 1,
+    body: 1,
+    acidity: 1,
     flavors: [],
     finish: [],
 }

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Box, createStyles, NumberInput, rem, Slider, Text} from "@mantine/core";
-import {InputPropsTypeWithLabel} from "../brewlog/types.ts";
 import {StyledNumberInput} from "./StyledNumberInput.tsx";
 import {getChecksFromZodSchema} from "./util.ts";
+import {InputPropsTypeWithLabel} from "../types/brewlog.ts";
 
 const DEFAULT_SLIDER_MAX = 100;
 

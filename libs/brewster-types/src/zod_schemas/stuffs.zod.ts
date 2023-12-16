@@ -16,6 +16,16 @@ export const stuffsSchema = z.object({
     decaff:z.boolean().optional()
 });
 
-export const createStuffsSchema = stuffsSchema.omit({_id: true});
+// schema for embeddig stuffs in logs
+export const embeddedStuffsSchema = stuffsSchema.omit({_id:true})
+    .extend({sourceId:z.string()})
+
+// summary for embedded stuffs in logs
+export const lookupSchema = z.object({
+    sourceId: z.string(),
+    label: z.string()
+})
+
+export const createStuffsSchema = stuffsSchema.omit({_id:true})
 
 export const updateStuffsSchema = stuffsSchema.partial();

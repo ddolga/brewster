@@ -1,6 +1,7 @@
 import {Controller, Get, Param, Query} from "@nestjs/common";
-import {SelectService, TypeOfStuff} from "./select.service";
+import {SelectService } from "./select.service";
 import {ApiTags} from "@nestjs/swagger";
+import {TypeOfStuff} from "../types/types";
 
 @ApiTags('stuffs')
 @Controller('stuffs/select')

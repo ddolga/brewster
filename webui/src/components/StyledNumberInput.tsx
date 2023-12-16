@@ -1,6 +1,6 @@
 import {createStyles, NumberInput, rem} from "@mantine/core";
-import {InputPropsTypeWithLabel} from "../brewlog/types.ts";
 import {getChecksFromZodSchema} from "./util.ts";
+import {InputPropsTypeWithLabel} from "../types/brewlog.ts";
 
 const useStyles = createStyles(() => ({
     numberInput: {

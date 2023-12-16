@@ -2,14 +2,14 @@ import React, {Fragment, useEffect, useState} from "react";
 import {Checkbox, Group, Radio, Select, Stack, Textarea, TextInput} from "@mantine/core";
 import {useCreateStuffsMutation, useGetStuffsDetailQuery, useUpdateStuffsMutation} from "../services/api/stuffsApi.ts";
 import {useNavigate, useParams} from "react-router-dom";
-import {CreateStuffsDto, StuffsSummaryDto, UpdateSuffsDto} from "../services/dto/stuffs.dto.ts";
 import {useForm} from "../form/Form.ts";
 import {convertViewModeToEnum, DetailsContainer, ViewMode} from "../components/DetailsContainer.tsx";
 import {createStuffsSchema, typeOfStuffSchema} from "brewster-types";
 import {ZodIssue} from "zod";
 import {ValueSlider} from "../components/ValueSlider.tsx";
-import {BasketTypeType} from "../common/types.ts";
 import {CheckboxField} from "../components/CheckboxField.tsx";
+import {CreateStuffsDto, StuffsSummaryDto, UpdateSuffsDto} from "../types/dto/stuffs.dto.ts";
+import {BasketTypeType} from "../types/common.ts";
 
 const initialValue: CreateStuffsDto = {
     model: '',

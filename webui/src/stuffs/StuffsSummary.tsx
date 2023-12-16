@@ -1,8 +1,8 @@
-import {StuffsSummaryDto} from "../services/dto/stuffs.dto.ts";
 import {useGetStuffsQuery} from "../services/api/stuffsApi.ts";
 import {Badge, Box, Card, createStyles, Flex, Group, rem, Text} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
 import {SummaryContainer} from "../components/SummaryContainer.tsx";
+import {StuffsSummaryDto} from "../types/dto/stuffs.dto.ts";
 
 const useStyles = createStyles(() => ({
     card: {

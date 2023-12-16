@@ -1,5 +1,6 @@
 import {z, ZodNumber} from "zod";
 import dayjs from "dayjs";
+import {embeddedStuffsSchema, lookupSchema} from "./stuffs.zod";
 
 const rnd = <T extends ZodNumber>(schema: T, places: number = 2) => {
     const multi = 10 ** places;
@@ -14,7 +15,7 @@ const drinkTypes = ["Americano", "Cappuccino", "Espresso", "Flat White", "Latte"
 
 export const drinkTypeSchema = z.enum(drinkTypes);
 
-export const basketTypeSchema = z.enum(['Single','Double']);
+export const basketTypeSchema = z.enum(['Single', 'Double']);
 
 export const brewlogSchema = z.object({
     _id: z.string(),
@@ -24,17 +25,11 @@ export const brewlogSchema = z.object({
     doze_in: rnd(z.number().min(7).max(25)).describe('amount of coffee in grams added to grinder'),
     doze_out: rnd(z.number().min(6).max(26).positive().describe('amount of coffee in grams that came out of grinder')),
     doze_used: rnd(z.number().min(6).max(26).positive().describe('amount of coffee put in the portafilter')),
-    coffee: z.string().describe('name of coffee'),
-    roaster: z.string().optional().describe('coffee roaster/distributor'),
-    origin: z.string().optional().describe('where coffee comes from'),
-    decaff: z.boolean().describe('is decaf'),
     brew_time: rnd(z.number().positive().max(60).describe('pull time in seconds (not including preinfusion)')),
     preinfusion: z.boolean().describe('preinfusion used'),
     tP: z.number().positive().max(20).optional().describe('preinfusion pause'),
     tI: z.number().positive().max(10).optional().describe('preinfusion duration'),
     coffee_out: rnd(z.number().min(6).max(50)).describe('grams of coffee produced'),
-    basketType: basketTypeSchema,
-    basketSize: z.number().int().min(7).max(24),
     discarded: z.boolean().describe('not drinkable'),
     drinkType: drinkTypeSchema,
     sweetness: z.number().int().min(1).max(10).optional(),
@@ -42,9 +37,18 @@ export const brewlogSchema = z.object({
     acidity: z.number().int().min(1).max(10).optional(),
     flavors: z.string().array().optional(),
     finish: z.string().array().optional(),
+    basket: embeddedStuffsSchema,
+    coffee: embeddedStuffsSchema,
     comment: z.string()
 });
 
-// export const createBrewlogSchema = brewlogSchema.omit({_id: true});
-//
-// export const updateBrewlogSchema = hasId.merge(createBrewlogSchema.partial());
+
+export const summaryBrewlogSchema = brewlogSchema.pick({
+    _id: true, date: true, brew_time: true, drinkType: true, doze_used: true
+})
+export const brewlogLookupSchema = brewlogSchema.extend({date: z.string(), coffee: lookupSchema, basket: lookupSchema})
+
+export const createBrewlogSchema = brewlogLookupSchema.omit({_id: true});
+export const updateBrewlogSchema = brewlogLookupSchema.partial();
+
+export const templateBrewlogSchema = brewlogSchema.omit({_id:true})
