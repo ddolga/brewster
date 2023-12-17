@@ -3,8 +3,7 @@ import {Accordion, AccordionItemProps, createStyles, Group, rem, Select, Text, T
 import dayjs from "dayjs";
 import {useNavigate, useParams} from "react-router-dom";
 import {
-    useCreateNewEntryMutation,
-    useGetBrewlogEntryQuery,
+    useCreateNewEntryMutation, useGetBrewlogDetailQuery,
     useGetBrewlogNewTemplateQuery,
     useUpdateEntryMutation
 } from "../services/api/brewlogApi.ts";
@@ -17,11 +16,11 @@ import {StyledNumberInput} from "../components/StyledNumberInput.tsx";
 import {useForm} from "../form/Form.ts";
 import {convertViewModeToEnum, DetailsContainer, ViewMode} from "../components/DetailsContainer.tsx";
 import {z, ZodIssue} from "zod";
-import {createBrewlogSchema, drinkTypeSchema, selectSchema} from "brewster-types";
+import {createBrewlogSchema, drinkTypeSchema, lookupSchema} from "brewster-types";
 import {useSelectStuffsQuery} from "../services/api/stuffsApi.ts";
 import {Brewlog} from "../types/brewlog.ts";
 import {TypeOfStuff} from "../types/common.ts";
-import {BrewlogSummaryDto, CreateBrewlogDto} from "../types/dto/brewlog.dto.ts";
+import {BrewlogDetailDto, BrewlogSummaryDto, CreateBrewlogDto, TemplateBrewlogDto} from "../types/dto/brewlog.dto.ts";
 
 const useStyles = createStyles((theme) => ({
     field: {
@@ -54,7 +53,7 @@ type OnChangeType<T> = (v: T) => void;
 
 interface BrewlogViewWDataProps extends BrewlogViewProps {
     viewMode: ViewMode,
-    data: BrewlogSummaryDto | CreateBrewlogDto
+    data: BrewlogDetailDto | CreateBrewlogDto
 }
 
 
@@ -107,7 +106,7 @@ export function BrewlogView(props: BrewlogViewProps) {
     const {id, mode} = useParams();
 
     const viewMode: ViewMode = convertViewModeToEnum(mode || 'view');
-    const data: BrewlogSummaryDto | undefined = useGetBrewlogEntryQuery({id: id!}).data;
+    const data: BrewlogDetailDto | undefined = useGetBrewlogDetailQuery({id: id!}).data;
     return data && <BrewlogViewWData viewMode={viewMode} data={data} {...props}/>
 }
 
@@ -124,7 +123,7 @@ interface SelectStuffProps {
     stuffType: TypeOfStuff
 }
 
-type Select = z.infer<typeof selectSchema>;
+type Select = z.infer<typeof lookupSchema>;
 
 function mapSelections(selections: Select[]): string[] {
     return selections.map(select => select.label);

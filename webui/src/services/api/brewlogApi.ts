@@ -1,10 +1,11 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
+    BrewlogDetailDto,
     BrewlogSummaryDto,
-    brewlogSummarySchema,
-    CreateBrewlogDto,
+    CreateBrewlogDto, TemplateBrewlogDto,
     UpdateBrewlogDto
 } from "../../types/dto/brewlog.dto.ts";
+import {createBrewlogSchema, detailBrewlogSchema, summaryBrewlogSchema, templateBrewlogSchema} from "brewster-types";
 
 
 const brewlogApi = createApi({
@@ -18,19 +19,19 @@ const brewlogApi = createApi({
             query: () => ({url: ''}),
             providesTags: ['Brewlog'],
             transformResponse: (response) => {
-                const boo = brewlogSummarySchema.array().parse(response);
+                const boo = summaryBrewlogSchema.array().parse(response);
                 return boo;
             },
         }),
-        getBrewlogEntry: build.query({
+        getBrewlogDetail: build.query({
             query: (args: {
                 id: string
             }) => ({
                 url: `/${args.id}`
             }),
             providesTags:['Brewlog'],
-            transformResponse: (response: BrewlogSummaryDto) => {
-                return brewlogSummarySchema.parse(response) as BrewlogSummaryDto;
+            transformResponse: (response: BrewlogDetailDto) => {
+                return detailBrewlogSchema.parse(response);
             }
         }),
         getBrewlogNewTemplate: build.query({
@@ -39,8 +40,8 @@ const brewlogApi = createApi({
             }) => ({
                 url: `/new/${args.id}`
             }),
-            transformResponse: (response: BrewlogSummaryDto) => {
-                return brewlogSummarySchema.omit({_id:true}).parse(response);
+            transformResponse: (response: CreateBrewlogDto) => {
+                return createBrewlogSchema.parse(response);
             },
         }),
         createNewEntry: build.mutation({
@@ -77,7 +78,7 @@ const brewlogApi = createApi({
 
 export const {
     useGetBrewlogsQuery,
-    useGetBrewlogEntryQuery,
+    useGetBrewlogDetailQuery,
     useGetBrewlogNewTemplateQuery,
     useCreateNewEntryMutation,
     useUpdateEntryMutation,

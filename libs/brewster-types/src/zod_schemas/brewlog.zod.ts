@@ -44,11 +44,11 @@ export const brewlogSchema = z.object({
 
 
 export const summaryBrewlogSchema = brewlogSchema.pick({
-    _id: true, date: true, brew_time: true, drinkType: true, doze_used: true
+    _id: true, date: true,coffee:true, brew_time: true, drinkType: true, doze_used: true
 })
+export const detailBrewlogSchema = brewlogSchema;
 export const brewlogLookupSchema = brewlogSchema.extend({date: z.string(), coffee: lookupSchema, basket: lookupSchema})
 
 export const createBrewlogSchema = brewlogLookupSchema.omit({_id: true});
 export const updateBrewlogSchema = brewlogLookupSchema.partial();
-
 export const templateBrewlogSchema = brewlogSchema.omit({_id:true})

@@ -22,16 +22,16 @@ const columns: MRT_ColumnDef<BrewlogSummaryDto>[] = [
         Cell: ({cell}) => dayjs(cell.getValue<Date>()).format('L LT')
     },
     {
-        accessorKey: 'grinderSetting',
-        header: 'Grind'
-    },
-    {
-        accessorKey: 'doze_in',
-        header: 'Doze In'
+        accessorKey: 'drinkType',
+        header: 'Drink Type'
     },
     {
         accessorKey: 'coffee',
         header: 'Coffee'
+    },
+    {
+        accessorKey: 'doze_used',
+        header: 'Doze'
     },
     {
         accessorKey: 'brew_time',

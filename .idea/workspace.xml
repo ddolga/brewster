@@ -4,44 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="more fixins">
-      <change afterPath="$PROJECT_DIR$/server/rest-scripts/brewlog.rest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/brewlogs/pipelines.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/stuffs/dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/types/types.ts" afterDir="false" />
+    <list default="true" id="2c71f6e9-c85e-47ef-953a-e073c6edec77" name="Changes" comment="reorganize typings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/brewster-types.build.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/brewlog.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/common.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/select.zod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/brewster-types/src/zod_schemas/stuffs.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.controller.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/brewlogs.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/brewlogs/dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/dto/create-stuff.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/dto/update-stuff.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/select.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/select.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/select.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/select.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/stuffs/stuffs.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogSummary.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/brewlog/BrewlogView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/brewlog/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/brewlog.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/common/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/common.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/components/CheckboxField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/CheckboxField.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/StyledNumberInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/components/ValueSlider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/form/Form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/form/Form.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/brewlogApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/services/api/stuffsApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/dto/brewlog.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/services/dto/stuffs.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/dto/stuffs.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsSummary.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/stuffs/StuffsView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui/src/types/dto/brewlog.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/webui/src/types/dto/brewlog.dto.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,7 +294,7 @@
       <workItem from="1702442869682" duration="9504000" />
       <workItem from="1702517136434" duration="17530000" />
       <workItem from="1702597914023" duration="15416000" />
-      <workItem from="1702654264920" duration="15492000" />
+      <workItem from="1702654264920" duration="19269000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -389,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702624347540</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="reorganize typings">
+      <option name="closed" value="true" />
+      <created>1702739190747</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702739190747</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +395,8 @@
     <MESSAGE value="started building the input form" />
     <MESSAGE value="re-organize layout" />
     <MESSAGE value="more for the fire" />
-    <option name="LAST_COMMIT_MESSAGE" value="more for the fire" />
+    <MESSAGE value="reorganize typings" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganize typings" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
